@@ -5,7 +5,6 @@ using UnityEngine;
 public class Manager : MonoBehaviour
 {
 
-
     List<Avatar> Todos;
     List<Transform> objetivos;
     public GameObject miiAvatar;
@@ -14,7 +13,6 @@ public class Manager : MonoBehaviour
 
     public float limitex=10, limitez=10;
 
-   
     void Start()
     {
         Todos = new List<Avatar>();
@@ -46,9 +44,11 @@ public class Manager : MonoBehaviour
     {
         AvatarSortByEdad AvSortEdad = new AvatarSortByEdad();
         Todos.Sort(AvSortEdad);
+        int conter=0;
         foreach (Avatar ar in Todos)
         {
-            ar.GotoObjective();
+            ar.setObjective(objetivos[conter], false);
+            conter++;
         }
     }
 
@@ -56,10 +56,11 @@ public class Manager : MonoBehaviour
     {
         AvatarSortByWeight AvSortPeso = new AvatarSortByWeight();
         Todos.Sort(AvSortPeso);
-
-        foreach(Avatar ar in Todos)
+        int conter = 0;
+        foreach (Avatar ar in Todos)
         {
-            ar.GotoObjective();
+            ar.setObjective(objetivos[conter], false);
+            conter++;
         }
     }
 

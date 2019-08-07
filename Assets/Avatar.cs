@@ -21,11 +21,11 @@ public class Avatar : MonoBehaviour
     {
         MiColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         mat = transform.GetChild(1).GetComponent<Renderer>();
-        speed = Random.Range(1f, 5f);
+        speed = Random.Range(3f, 5f);
         mat.material.SetColor("_Color",MiColor);
         rig = GetComponent<Rigidbody>();
 
-        Edad = Random.Range(0, 100);
+        Edad = Random.Range(10, 100);
         Peso = Random.Range(50f, 100f);
 
     }
@@ -68,7 +68,12 @@ public class Avatar : MonoBehaviour
     {
         objective = obj;
         arrived = arrive;
-
+        if (!arrive)
+        {
+            direction = objective.position - transform.position;
+            direction.y = 0;
+            direction.Normalize();
+        }
     }
 
     public void GotoObjective()
