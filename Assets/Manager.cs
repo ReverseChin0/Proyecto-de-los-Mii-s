@@ -66,28 +66,70 @@ public class Manager : MonoBehaviour
 
     void setWaypoints()
     {
-        float espacioX = limitex*2;  //20
+        /*float espacioX = limitex*2;  //20
         float espacioZ = limitez*2; //20
 
-        int columnas = NumeroAvatares/10; //10
+        int filas = NumeroAvatares/10; //10
 
-        float distanciaX = espacioX / columnas;
-        float distanciaZ = espacioZ / columnas;
+        if (filas == 0)
+        {
+            filas++;
+        }
 
-        float contX = -limitex, contZ = -limitez;
+        float distanciaX = espacioX / filas;
+        float distanciaZ = espacioZ / filas;
+
+        float contX = 0, contZ = 0;
        
         foreach(Transform tr in objetivos)
         {
-            
-            tr.position = new Vector3(contX, 1, contZ);
+            print("contz"+contX);
+            tr.position = new Vector3(-limitex+contX, 1, -limitez + contZ);
             contX += distanciaX; 
-            if (contX > espacioX+0.001)
+            if (contX >= espacioX)
             {
-                contX = -limitex;
+                contX = 0;
                 contZ += distanciaZ;
             }
 
+        }*/
+
+        int filas = 1, columnas = 1;
+
+        if (NumeroAvatares < 10)
+        {
+            columnas = NumeroAvatares;
         }
+        else
+        {
+            columnas =  10;
+            filas = NumeroAvatares / 10;
+            if (NumeroAvatares % 10 != 0)
+            {
+                filas++;
+            }
+        }
+
+        //print("filas "+filas+" y columnas " + columnas);
+
+        float separacionX = limitex/(columnas*.5f), separacionZ = limitez/(filas*0.5f);
+        float contx = -limitex,contz= -limitez;
+        int k = 0;
+        
+        for(int i=0; i<filas; i++)
+        {
+            for(int j = 0; j < columnas; j++)
+            {
+                
+                contx += separacionX;
+                objetivos[k].position = new Vector3(contx,1,contz);
+                k++;
+                if (k >= NumeroAvatares) return;
+            }
+            contx = -limitex;
+            contz += separacionZ;
+        }
+
     }
 }
 

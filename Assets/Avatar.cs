@@ -16,7 +16,9 @@ public class Avatar : MonoBehaviour
     Rigidbody rig;
     Collider myColi;
 
+    Vector3 rumbo;
     Vector3 direction;
+    float distancia=0;
 
     void Start()
     {
@@ -33,37 +35,40 @@ public class Avatar : MonoBehaviour
 
     void Update()
     {
-        
-    }
 
-    private void FixedUpdate()
-    {
         if (!arrived)
         {
-            rig.MovePosition(transform.position + direction * Time.deltaTime * speed);
-
-            if (!directed) {
+            if (!directed)
+            {
                 directed = true;
-                StartCoroutine(setDirection(0.3f));
+                StartCoroutine(setDirection(0.25f));
             }
 
-            float dist = Vector3.Distance(transform.position, objective.position);
-
-            if (dist < 1.1f)
+            if (rumbo.sqrMagnitude < 0.5f)
             {
                 arrived = true;
-                transform.position = new Vector3(objective.position.x,0.01f, objective.position.z);
+                transform.position = new Vector3(objective.position.x, 0.01f, objective.position.z);
                 myColi.isTrigger = true;
                 rig.isKinematic = true;
             }
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (!arrived)
+        {
+            rig.MovePosition(transform.position + direction * Time.deltaTime * speed);            
+        }
+    }
+
     IEnumerator setDirection(float time)
     {
-        direction = objective.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
+        rumbo = objective.position - transform.position;
+        rumbo.y = 0;
+        distancia = rumbo.magnitude;
+        direction = rumbo / distancia;
+
         yield return new WaitForSeconds(time);
         directed = false;
     }
@@ -82,9 +87,10 @@ public class Avatar : MonoBehaviour
            
         if (!arrive)
         {
-            direction = objective.position - transform.position;
-            direction.y = 0;
-            direction.Normalize();
+            rumbo = objective.position - transform.position;
+            rumbo.y = 0;
+            distancia = rumbo.magnitude;
+            direction = rumbo / distancia;
         }
     }
 
@@ -94,8 +100,17 @@ public class Avatar : MonoBehaviour
         arrived = false;
         myColi.isTrigger = false;
 
-        direction = objective.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
+        rumbo = objective.position - transform.position;
+        rumbo.y = 0;
+        distancia = rumbo.magnitude;
+        direction = rumbo / distancia;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Miis"))
+        {
+            rig.AddForce(new Vector3(Random.Range(-1.1f, 1.1f), 0, Random.Range(-1.1f, 1.1f)), ForceMode.Impulse);
+        }
     }
 }
