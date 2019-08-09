@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44300288, g: 0.49219579, b: 0.5719256, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -789,7 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miiAvatar: {fileID: 3881786838238501144, guid: ba800f6734b5a2645a17d565f48175f6,
     type: 3}
-  NumeroAvatares: 78
+  NumeroAvatares: 100
   limitex: 10
   limitez: 10
 --- !u!4 &1524000192
