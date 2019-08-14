@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
     public GameObject miiAvatar;
     [Tooltip("Cuantos mii´s, habrá en la simulacion")]
     public int NumeroAvatares;
-    int nMujeres=0;
+    int nMujeres=0, lastselected=0;//0=idlewalk,1=edad,2=peso,3=genero,,4=nombre,5=color
 
     public float limitex=10, limitez=10;
 
@@ -40,7 +40,6 @@ public class Manager : MonoBehaviour
         }
 
         OcultarDialogo();
-        setWaypoints();
     }
 
     void Update()
@@ -74,59 +73,94 @@ public class Manager : MonoBehaviour
 
     public void OrdenarPorEdad()
     {
-        AvatarSortByEdad AvSortEdad = new AvatarSortByEdad();
-        Todos.Sort(AvSortEdad);
-        int conter=0;
-        setWaypoints();
-        foreach (Avatar ar in Todos)
+
+        if (lastselected != 1)
         {
-            ar.setObjective(objetivos[conter], false);
-            conter++;
+            lastselected = 1;
+            AvatarSortByEdad AvSortEdad = new AvatarSortByEdad();
+            Todos.Sort(AvSortEdad);
+            int conter = 0;
+            setWaypoints();
+            foreach (Avatar ar in Todos)
+            {
+                ar.setObjective(objetivos[conter], false);
+                conter++;
+            }
         }
+        
     }
 
     public void OrdenarPorPeso()
     {
-        AvatarSortByWeight AvSortPeso = new AvatarSortByWeight();
-        Todos.Sort(AvSortPeso);
-        int conter = 0;
-        setWaypoints();
-        foreach (Avatar ar in Todos)
+        if (lastselected != 2)
         {
-            ar.setObjective(objetivos[conter], false);
-            conter++;
+            lastselected = 2;
+            AvatarSortByWeight AvSortPeso = new AvatarSortByWeight();
+            Todos.Sort(AvSortPeso);
+            int conter = 0;
+            setWaypoints();
+            foreach (Avatar ar in Todos)
+            {
+                ar.setObjective(objetivos[conter], false);
+                conter++;
+            }
         }
     }
 
     public void ordenarPorGenero()
     {
-        Todos = Todos.OrderBy(a => a.mujer).ToList();
-        int conter = 0;
-        nMujeres = 0;
-        foreach (Avatar ar in Todos)
+        if (lastselected != 3)
         {
-            if (ar.mujer)
+            lastselected = 3;
+            Todos = Todos.OrderBy(a => a.mujer).ToList();
+            int conter = 0;
+            nMujeres = 0;
+            foreach (Avatar ar in Todos)
             {
-                nMujeres++;
+                if (ar.mujer)
+                {
+                    nMujeres++;
+                }
             }
-        }
-        setWaypointsGender();
-        foreach (Avatar ar in Todos)
-        {
-            ar.setObjective(objetivos[conter], false);
-            conter++;
+            setWaypointsGender();
+            foreach (Avatar ar in Todos)
+            {
+                ar.setObjective(objetivos[conter], false);
+                conter++;
+            }
         }
     }
 
     public void ordenarPorNombre()
     {
-        Todos = Todos.OrderBy(a => a.Nombre).ToList();
-        int conter = 0;
-        setWaypoints();
-        foreach (Avatar ar in Todos)
+        if (lastselected != 4)
         {
-            ar.setObjective(objetivos[conter], false);
-            conter++;
+            lastselected = 4;
+            Todos = Todos.OrderBy(a => a.Nombre).ToList();
+            int conter = 0;
+            setWaypoints();
+            foreach (Avatar ar in Todos)
+            {
+                ar.setObjective(objetivos[conter], false);
+                conter++;
+            }
+        }
+    }
+
+    public void ordenarPorColor()
+    {
+        if (lastselected != 5)
+        {
+            lastselected = 5;
+            AvatarSortByColor AvColor = new AvatarSortByColor();
+            Todos.Sort(AvColor);
+            int conter = 0;
+            setWaypoints();
+            foreach (Avatar ar in Todos)
+            {
+                ar.setObjective(objetivos[conter], false);
+                conter++;
+            }
         }
     }
     void setWaypoints()
@@ -196,7 +230,7 @@ public class Manager : MonoBehaviour
             for (int j = 0; j < columnas; j++)
             {
                 contx += separacionX;
-                objetivos[k].position = new Vector3(contx, 1, contz);
+                objetivos[k].position = new Vector3(contx, 0.1f, contz);
                 k++;
                 if (k >= NumeroAvatares - nMujeres) break;
             }
@@ -267,5 +301,24 @@ class AvatarSortByWeight : IComparer<Avatar>
         else return 0;
     }
 
+    #endregion
+}
+
+class AvatarSortByColor : IComparer<Avatar>
+{
+    #region IComparer<Avatar> Members
+    public int Compare(Avatar a, Avatar b)
+    {
+        float ha, sa, va;
+        Color.RGBToHSV(a.MiColor,out ha,out sa,out va);
+        float hb, sb, vb;
+        Color.RGBToHSV(b.MiColor, out hb, out sb, out vb);
+        if (ha > hb)
+            return 1;
+        else if (ha < hb)
+            return -1;
+       
+        return 0;
+    }
     #endregion
 }

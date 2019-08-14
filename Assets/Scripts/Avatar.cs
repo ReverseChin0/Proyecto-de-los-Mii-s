@@ -12,11 +12,13 @@ public class Avatar : MonoBehaviour
     public bool mujer=true;
 
     Transform objective;
-    bool arrived=true, directed=false;
+    bool arrived=true, directed=false, moving=false;
+    float startSpeed;
 
     Renderer mat;
     Rigidbody rig;
     Collider myColi;
+    Animator Anim;
 
     Vector3 rumbo;
     Vector3 direction;
@@ -31,12 +33,14 @@ public class Avatar : MonoBehaviour
             Nombre += glyphs[Random.Range(0, glyphs.Length)];
         }
 
+        startSpeed = speed;
         mujer = (Random.Range(0,2) == 0);
         MiColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        mat = transform.GetChild(1).GetComponent<Renderer>();
+        mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
         mat.material.SetColor("_Color",MiColor);
         rig = GetComponent<Rigidbody>();
         myColi = GetComponent<Collider>();
+        if(Anim==null)Anim = GetComponent<Animator>();
 
         Edad = Random.Range(10, 100);
         Peso = Random.Range(50f, 100f);
@@ -46,19 +50,27 @@ public class Avatar : MonoBehaviour
     {
         if (!arrived)
         {
+            
             if (!directed)
             {
                 directed = true;
                 StartCoroutine(setDirection(0.25f));
             }
 
-            if (rumbo.sqrMagnitude < 0.5f)
+            if (rumbo.sqrMagnitude <= 0.04f)
             {
                 arrived = true;
+                Anim.SetBool("Moving", false);
                 transform.position = new Vector3(objective.position.x, 0.01f, objective.position.z);
                 myColi.isTrigger = true;
                 rig.isKinematic = true;
+                speed = startSpeed;
             }
+            else if(rumbo.sqrMagnitude < 0.8f)
+            {
+                speed = startSpeed * .15f;
+            }
+            else { speed = startSpeed; }
         }
     }
 
@@ -86,6 +98,8 @@ public class Avatar : MonoBehaviour
 
         objective = obj;
         arrived = arrive;
+        if (Anim==null) { Anim = GetComponent<Animator>(); }
+        StartCoroutine(activaRun(!arrive));
 
         if (myColi != null)
         {
@@ -106,6 +120,7 @@ public class Avatar : MonoBehaviour
     {
         rig.isKinematic = false;
         arrived = false;
+        StartCoroutine(activaRun(true));
         myColi.isTrigger = false;
 
         rumbo = objective.position - transform.position;
@@ -122,5 +137,14 @@ public class Avatar : MonoBehaviour
         }
     }
 
- 
+    public IEnumerator activaRun(bool moving)
+    {
+        float time = 0;
+        if (moving) 
+        {
+            time=Random.Range(0f, 1.5f);
+        }
+        yield return new WaitForSeconds(time);
+        if(!arrived)Anim.SetBool("Moving", moving);
+    }
 }

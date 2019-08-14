@@ -10,7 +10,7 @@ public class MouseDrag : MonoBehaviour
     public Camera cam;
 
     public float limitx=40,limitz=40,sensibilidadZoom=2;
-    float currentzoom=60;
+    float currentzoom=50;
     void Start()
     {
         
@@ -19,7 +19,7 @@ public class MouseDrag : MonoBehaviour
     {
 
         currentzoom += -Input.GetAxis("Mouse ScrollWheel") * currentzoom * 10f * Time.deltaTime;
-        currentzoom = Mathf.Clamp(currentzoom, 10f, 60f);
+        currentzoom = Mathf.Clamp(currentzoom, 10f, 50f);
         cam.fieldOfView = currentzoom;
 
         if (Input.GetMouseButtonDown(0))
@@ -35,8 +35,8 @@ public class MouseDrag : MonoBehaviour
 
         if (transform.position.x + move.x < -limitx) move.x = 0;
         if (transform.position.x + move.x > limitx) move.x = 0;
-        if (transform.position.z + move.z < -limitz*1.5f) move.z = 0;
-        if (transform.position.z + move.z > limitz) move.z = 0;
+        if (transform.position.z + move.z < -limitz*2.4f) move.z = 0;
+        if (transform.position.z + move.z > limitz*0.6f) move.z = 0;
         transform.Translate(move, Space.World);
     }
 }
