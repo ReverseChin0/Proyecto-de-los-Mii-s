@@ -102,7 +102,7 @@ public class Manager : MonoBehaviour
     {
         Todos = Todos.OrderBy(a => a.mujer).ToList();
         int conter = 0;
-        
+        nMujeres = 0;
         foreach (Avatar ar in Todos)
         {
             if (ar.mujer)
@@ -116,7 +116,6 @@ public class Manager : MonoBehaviour
             ar.setObjective(objetivos[conter], false);
             conter++;
         }
-        
     }
 
     public void ordenarPorNombre()
@@ -172,6 +171,7 @@ public class Manager : MonoBehaviour
 
     void setWaypointsGender()
     {
+        int l = 0, k = 0; 
         int filas = 1, columnas = 1;
 
         if (NumeroAvatares - nMujeres < 10)
@@ -190,7 +190,6 @@ public class Manager : MonoBehaviour
         
         float separacionX = limitex / (columnas), separacionZ = limitez / (filas * 0.5f);
         float contx = -limitex-2.5f, contz = -limitez;
-        int k = 0;
         
         for (int i = 0; i < filas; i++)
         {
@@ -205,7 +204,6 @@ public class Manager : MonoBehaviour
             contx = -limitex - 2.5f;
             contz += separacionZ;
         }
-        
 
         filas = 1; columnas = 1;
 
@@ -225,7 +223,7 @@ public class Manager : MonoBehaviour
 
         separacionX = limitex / (columnas); separacionZ = limitez / (filas * 0.5f);
         contx = 2.5f; contz = -limitez;
-        int l = 0;
+        
         for (int i = 0; i < filas; i++)
         {
             for (int j = 0; j < columnas; j++)
@@ -234,7 +232,7 @@ public class Manager : MonoBehaviour
                 objetivos[k].position = new Vector3(contx, 0.1f, contz);
                 k++;
                 l++;
-                if (l >= nMujeres) return;
+                if (l >= nMujeres) return;          
             }
             contx = 2.5f;
             contz += separacionZ;
