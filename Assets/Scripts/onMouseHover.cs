@@ -15,7 +15,7 @@ public class onMouseHover : MonoBehaviour
     public void OnMouseEnter()
     {
         Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
-        miMan.MostrarDialogo(newpos,miavatar.Nombre, miavatar.Edad, miavatar.Peso, miavatar.mujer);    
+        miMan.MostrarDialogo(newpos,miavatar.Nombre, miavatar.Puntuacion, miavatar.Faltas, miavatar.mujer);    
     }
 
     public void OnMouseExit()

@@ -71,14 +71,14 @@ public class Manager : MonoBehaviour
         MiiDisplay.SetBool("Show", false);
     }
 
-    public void OrdenarPorEdad()
+    public void OrdenarPorPuntuacion()
     {
 
         if (lastselected != 1)
         {
             lastselected = 1;
-            AvatarSortByEdad AvSortEdad = new AvatarSortByEdad();
-            Todos.Sort(AvSortEdad);
+            AvatarSortByScore AvScore = new AvatarSortByScore();
+            Todos.Sort(AvScore);
             int conter = 0;
             setWaypoints();
             foreach (Avatar ar in Todos)
@@ -90,13 +90,13 @@ public class Manager : MonoBehaviour
         
     }
 
-    public void OrdenarPorPeso()
+    public void OrdenarPorFaltas()
     {
         if (lastselected != 2)
         {
             lastselected = 2;
-            AvatarSortByWeight AvSortPeso = new AvatarSortByWeight();
-            Todos.Sort(AvSortPeso);
+            AvatarSortByAssistance AvAssistance = new AvatarSortByAssistance();
+            Todos.Sort(AvAssistance);
             int conter = 0;
             setWaypoints();
             foreach (Avatar ar in Todos)
@@ -276,28 +276,28 @@ public class Manager : MonoBehaviour
 
 }
 
-class AvatarSortByEdad : IComparer<Avatar>
+class AvatarSortByScore : IComparer<Avatar>
 {
     #region IComparer<Avatar> Members
 
     public int Compare(Avatar x, Avatar y)
     {
-        if (x.Edad > y.Edad) return 1;
-        else if (x.Edad < y.Edad) return -1;
+        if (x.Puntuacion > y.Puntuacion) return 1;
+        else if (x.Puntuacion < y.Puntuacion) return -1;
         else return 0;
     }
 
     #endregion
 }
 
-class AvatarSortByWeight : IComparer<Avatar>
+class AvatarSortByAssistance : IComparer<Avatar>
 {
     #region IComparer<Avatar> Members
 
     public int Compare(Avatar x, Avatar y)
     {
-        if (x.Peso > y.Peso) return 1;
-        else if (x.Peso < y.Peso) return -1;
+        if (x.Faltas > y.Faltas) return 1;
+        else if (x.Faltas < y.Faltas) return -1;
         else return 0;
     }
 

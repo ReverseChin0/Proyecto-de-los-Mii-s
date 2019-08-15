@@ -7,13 +7,13 @@ public class Avatar : MonoBehaviour
 {
     public string Nombre;
     public Color MiColor;
-    public int Edad;
-    public float Peso, speed;
+    public int Puntuacion;
+    public int Faltas;
     public bool mujer=true;
 
     Transform objective;
     bool arrived=true, directed=false, moving=false;
-    float startSpeed;
+    float startSpeed, speed;
 
     Renderer mat;
     Rigidbody rig;
@@ -42,8 +42,8 @@ public class Avatar : MonoBehaviour
         myColi = GetComponent<Collider>();
         if(Anim==null)Anim = GetComponent<Animator>();
 
-        Edad = Random.Range(10, 100);
-        Peso = Random.Range(50f, 100f);
+        Puntuacion = Random.Range(0, 100);
+        Faltas = Random.Range(0,5);
     }
 
     void Update()
