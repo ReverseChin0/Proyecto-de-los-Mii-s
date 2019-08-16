@@ -47,14 +47,14 @@ public class Manager : MonoBehaviour
        
     }
 
-    public void MostrarDialogo(Vector3 avatarPos,string nombre, float edad, float peso, bool genero)
+    public void MostrarDialogo(Vector3 avatarPos,string nombre, int puntos, int faltas, bool genero)
     {
         MiiDisplay.SetBool("Show",true);
         DialogBox.transform.position = mainCam.WorldToScreenPoint(avatarPos);
 
         Name.text = "Nombre: "+nombre;
-        Age.text = "Edad: " + edad.ToString();
-        Weight.text = "Peso: "+ peso.ToString();
+        Age.text = "Puntuacion: " + puntos.ToString();
+        Weight.text = "Faltas: "+ faltas.ToString();
 
         if (genero)
         {
@@ -282,8 +282,8 @@ class AvatarSortByScore : IComparer<Avatar>
 
     public int Compare(Avatar x, Avatar y)
     {
-        if (x.Puntuacion > y.Puntuacion) return 1;
-        else if (x.Puntuacion < y.Puntuacion) return -1;
+        if (x.Puntuacion < y.Puntuacion) return 1;
+        else if (x.Puntuacion > y.Puntuacion) return -1;
         else return 0;
     }
 

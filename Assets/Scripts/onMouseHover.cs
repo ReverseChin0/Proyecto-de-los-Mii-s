@@ -4,23 +4,49 @@ using UnityEngine;
 
 public class onMouseHover : MonoBehaviour
 {
+    [SerializeField]
+    bool suelo = false;
+        
     public Manager miMan;
+    public SceneChanger changer;
     public Avatar miavatar;
     void Start()
     {
-        miavatar=GetComponent<Avatar>();
-        miMan = FindObjectOfType<Manager>();
+        changer = FindObjectOfType<SceneChanger>();
+        if (!suelo)
+        {
+            miavatar = GetComponent<Avatar>();
+            miMan = FindObjectOfType<Manager>();
+        }
     }
 
     public void OnMouseEnter()
     {
-        Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
-        miMan.MostrarDialogo(newpos,miavatar.Nombre, miavatar.Puntuacion, miavatar.Faltas, miavatar.mujer);    
+        if (!suelo)
+        {
+            Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+            miMan.MostrarDialogo(newpos, miavatar.Nombre, miavatar.Puntuacion, miavatar.Faltas, miavatar.mujer);
+        }
+        
     }
 
     public void OnMouseExit()
     {
-        miMan.OcultarDialogo();
+        if (!suelo)
+        {
+            miMan.OcultarDialogo();
+        }
     }
 
+    public void OnMouseDown()
+    {
+        if (!suelo)
+        {
+            changer.miAvatar = gameObject.GetComponent<Avatar>();
+        }
+        else
+        {
+            changer.miAvatar = null;
+        }
+    }
 }

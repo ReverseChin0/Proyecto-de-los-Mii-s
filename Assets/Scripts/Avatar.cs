@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class Avatar : MonoBehaviour
 {
+    [Header("Avatar Parameters")]
     public string Nombre;
     public Color MiColor;
+    [Space(3f)]
     public int Puntuacion;
     public int Faltas;
     public bool mujer=true;
-
+    
     Transform objective;
-    bool arrived=true, directed=false, moving=false;
-    float startSpeed, speed;
+    bool arrived=true, directed=false, moving=false, primerRumbo=false;
+    float startSpeed;
 
     Renderer mat;
     Rigidbody rig;
@@ -22,11 +24,13 @@ public class Avatar : MonoBehaviour
 
     Vector3 rumbo;
     Vector3 direction;
-    float distancia=0;
+    float distancia=0, speed;
     const string glyphs = "abcdefghijklmnopqrstuvwxyz";
 
     void Start()
     {
+        speed = 5;
+        Puntuacion = Random.Range(0, 100);
         int nombrelength = Random.Range(3, 12);
         for (int i = 0; i < nombrelength; i++)
         {
@@ -35,14 +39,28 @@ public class Avatar : MonoBehaviour
 
         startSpeed = speed;
         mujer = (Random.Range(0,2) == 0);
-        MiColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        if (Puntuacion < 30)
+        {
+            MiColor = new Color(0, 0, 0);
+        }
+        else if (Puntuacion < 50)
+        {
+            MiColor = new Color(1f, 0, 0);
+        }else if (Puntuacion < 70)
+        {
+            MiColor = new Color(1f, 1f, 0);
+        }
+        else
+        {
+            MiColor = new Color(0, 1f, 0);
+        }
         mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
         mat.material.SetColor("_Color",MiColor);
         rig = GetComponent<Rigidbody>();
         myColi = GetComponent<Collider>();
         if(Anim==null)Anim = GetComponent<Animator>();
 
-        Puntuacion = Random.Range(0, 100);
+       
         Faltas = Random.Range(0,5);
     }
 
@@ -59,12 +77,15 @@ public class Avatar : MonoBehaviour
 
             if (rumbo.sqrMagnitude <= 0.04f)
             {
+                StopCoroutine(setDirection(0));
                 arrived = true;
                 Anim.SetBool("Moving", false);
                 transform.position = new Vector3(objective.position.x, 0.01f, objective.position.z);
                 myColi.isTrigger = true;
                 rig.isKinematic = true;
                 speed = startSpeed;
+                transform.LookAt(transform.position+Vector3.back);
+                primerRumbo = false;
             }
             else if(rumbo.sqrMagnitude < 0.8f)
             {
@@ -84,10 +105,17 @@ public class Avatar : MonoBehaviour
 
     IEnumerator setDirection(float time)
     {
+
+        if (!primerRumbo)
+        {
+            transform.LookAt(objective);
+            primerRumbo = true;
+        }
         rumbo = objective.position - transform.position;
         rumbo.y = 0;
         distancia = rumbo.magnitude;
         direction = rumbo / distancia;
+
 
         yield return new WaitForSeconds(time);
         directed = false;
