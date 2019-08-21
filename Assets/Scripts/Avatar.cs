@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class Avatar : MonoBehaviour
 {
     [Header("Avatar Parameters")]
     public string Nombre;
     public Color MiColor;
     [Space(3f)]
-    public int Puntuacion;
-    public int Faltas;
+    public int Puntuacion, Faltas, Presencias, Tarde, Medica, Sustituto, RefReci, Formaciones, Puntualidad;
+    public float Invitados, RefGene, Uno_a_Uno;
+    public double GNC;
     public bool mujer=true;
     
     Transform objective;
@@ -63,6 +65,7 @@ public class Avatar : MonoBehaviour
        
         Faltas = Random.Range(0,5);
     }
+
 
     void Update()
     {
@@ -144,19 +147,6 @@ public class Avatar : MonoBehaviour
         }
     }
 
-    public void GotoObjective()
-    {
-        rig.isKinematic = false;
-        arrived = false;
-        StartCoroutine(activaRun(true));
-        myColi.isTrigger = false;
-
-        rumbo = objective.position - transform.position;
-        rumbo.y = 0;
-        distancia = rumbo.magnitude;
-        direction = rumbo / distancia;
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Miis"))
@@ -175,4 +165,64 @@ public class Avatar : MonoBehaviour
         yield return new WaitForSeconds(time);
         if(!arrived)Anim.SetBool("Moving", moving);
     }
+
+    /*public int CalculateAllScores()
+    {
+        Puntuacion = 0;
+        //=======Absentismo=======
+        if (Faltas == 2)
+            Puntuacion += 5;
+        else if (Faltas == 1)
+            Puntuacion += 10;
+        else if(Faltas<1)
+            Puntuacion += 15;
+
+        //=======Gracias por Negocio Cerrado======
+        if (GNC >= 60000)
+            Puntuacion += 15;
+        else if (GNC >= 30000)
+            Puntuacion += 10;
+        else if (GNC >= 15000)
+            Puntuacion += 5;
+
+        //======Referencias por Semana======
+        if (RefGene >= 1.20f)
+            Puntuacion += 20;
+        else if (RefGene >= 1.00f)
+            Puntuacion += 15;
+        else if (RefGene >= 0.75f)
+            Puntuacion += 10;
+        else if (RefGene >= 0.50f)
+            Puntuacion += 5;
+
+        //======Invitados por Semana======
+        if (Invitados >= 0.500f)
+            Puntuacion += 20;
+        else if (Invitados >= 0.250f)
+            Puntuacion += 15;
+        else if (Invitados >= 0.167f)
+            Puntuacion += 10;
+        else if (Invitados >= 0.083f)
+            Puntuacion += 5;
+
+        //======Unos a Unos======
+        if (Uno_a_Uno >= 0.75f)
+            Puntuacion += 10;
+        else if (Uno_a_Uno > 0)
+            Puntuacion += 5;
+
+        //======Puntualidad======
+        if (Puntualidad == 0)
+            Puntuacion += 5;
+
+        //======Unidades de Formacion======
+        if (Formaciones >= 3)
+            Puntuacion += 15;
+        else if (Formaciones == 2)
+            Puntuacion += 10;
+        else if (Puntuacion == 1)
+            Puntuacion += 5;
+
+        return Puntuacion;
+    }*/
 }

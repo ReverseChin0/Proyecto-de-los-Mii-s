@@ -44,9 +44,5 @@ public class onMouseHover : MonoBehaviour
         {
             changer.miAvatar = gameObject.GetComponent<Avatar>();
         }
-        else
-        {
-            changer.miAvatar = null;
-        }
     }
 }
