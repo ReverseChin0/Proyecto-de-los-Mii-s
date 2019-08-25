@@ -1009,7 +1009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &738617608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   miMan: {fileID: 1524000191}
   changer: {fileID: 1821262300}
   miavatar: {fileID: 0}
+  btnCheck: {fileID: 0}
 --- !u!1 &798739851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,6 +2022,7 @@ MonoBehaviour:
   mainCam: {fileID: 534669904}
   MiiDisplay: {fileID: 1544758832}
   DialogBox: {fileID: 51212537}
+  btnCheckCharacter: {fileID: 738617607}
   Name: {fileID: 79712730}
   Age: {fileID: 1773540612}
   Weight: {fileID: 1293428599}
@@ -2466,7 +2468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1821262300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2482,6 +2484,7 @@ MonoBehaviour:
   fader: {fileID: 215200496}
   Canvas: {fileID: 1821262299}
   Prefab: {fileID: 3881786838238501144, guid: ba800f6734b5a2645a17d565f48175f6, type: 3}
+  btnCheckCharacter: {fileID: 738617607}
   miAvatar: {fileID: 0}
   mianim: {fileID: 1821262305}
 --- !u!114 &1821262301
@@ -2542,7 +2545,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1821262304
 RectTransform:

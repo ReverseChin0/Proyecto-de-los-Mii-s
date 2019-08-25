@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class GetJSON : MonoBehaviour
@@ -25,7 +26,28 @@ public class GetJSON : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.downloadHandler.text);
+            Debug.Log(www.downloadHandler);
+            List<JsonData> datos = JsonConvert.DeserializeObject<List<JsonData>>(www.downloadHandler.text);
         }
     }
+}
+
+public class JsonData
+{
+    public string IDAvatar { get; set; }
+    public string Nombre { get; set; }
+    public string Apellido { get; set; }
+    public string Presente { get; set; }
+    public string Faltas { get; set; }
+    public string Tarde { get; set; }
+    public string FaltasMedicas { get; set; }
+    public string FaltasSustituidas { get; set; }
+    public string RefDI { get; set; }
+    public string RefDE { get; set; }
+    public string RefRI { get; set; }
+    public string RefRe { get; set; }
+    public string Invitados { get; set; }
+    public string UnoaUno { get; set; }
+    public string GPNC { get; set; }
+    public string UdeF { get; set; }
 }

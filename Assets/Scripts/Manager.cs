@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour
 {
     public Camera mainCam;
     public Animator MiiDisplay;
-    public GameObject DialogBox;
+    public GameObject DialogBox, btnCheckCharacter;
     public Text Name, Age, Weight, Gender;
     [Header("Avatar Behaviour")]
     List<Avatar> Todos;
@@ -274,6 +274,10 @@ public class Manager : MonoBehaviour
         
     }
 
+    public void ActivarBtnChange(bool activar)
+    {
+        btnCheckCharacter.SetActive(activar);
+    }
 }
 
 class AvatarSortByScore : IComparer<Avatar>

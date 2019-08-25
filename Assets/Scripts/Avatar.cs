@@ -84,8 +84,7 @@ public class Avatar : MonoBehaviour
                 arrived = true;
                 Anim.SetBool("Moving", false);
                 transform.position = new Vector3(objective.position.x, 0.01f, objective.position.z);
-                myColi.isTrigger = true;
-                rig.isKinematic = true;
+                setStatic(true);
                 speed = startSpeed;
                 transform.LookAt(transform.position+Vector3.back);
                 primerRumbo = false;
@@ -108,11 +107,11 @@ public class Avatar : MonoBehaviour
 
     IEnumerator setDirection(float time)
     {
-
         if (!primerRumbo)
         {
             transform.LookAt(objective);
             primerRumbo = true;
+            setStatic(false);
         }
         rumbo = objective.position - transform.position;
         rumbo.y = 0;
@@ -166,6 +165,11 @@ public class Avatar : MonoBehaviour
         if(!arrived)Anim.SetBool("Moving", moving);
     }
 
+    public void setStatic(bool t)
+    {
+        myColi.isTrigger = t;
+        rig.isKinematic = t;
+    }
     /*public int CalculateAllScores()
     {
         Puntuacion = 0;
