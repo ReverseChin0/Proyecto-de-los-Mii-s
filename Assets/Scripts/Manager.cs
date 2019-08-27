@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -9,34 +10,41 @@ public class Manager : MonoBehaviour
     public Camera mainCam;
     public Animator MiiDisplay;
     public GameObject DialogBox, btnCheckCharacter;
-    public Text Name, Age, Weight, Gender;
+    public Text Name, Param1, Param2, Param3;
     [Header("Avatar Behaviour")]
     List<Avatar> Todos;
     List<Transform> objetivos;
     public GameObject miiAvatar;
     [Tooltip("Cuantos mii´s, habrá en la simulacion")]
-    public int NumeroAvatares;
-    int nMujeres=0, lastselected=0;//0=idlewalk,1=edad,2=peso,3=genero,,4=nombre,5=color
+    public int lastselected = 0;//0=idlewalk,1=edad,2=peso,3=genero,,4=nombre,5=color;
+    int NumeroAvatares,nMujeres = 0;
 
     public float limitex=10, limitez=10;
 
     void Start()
     {
+        
+    }
+
+    public void StartManager(List<JsonData> datos)
+    {
         Todos = new List<Avatar>();
         objetivos = new List<Transform>();
+        NumeroAvatares = datos.Count;
+        for (int i = 0; i < datos.Count; i++)
+        {
+             GameObject go = Instantiate(miiAvatar, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
+             Avatar currentAvatar = go.GetComponent<Avatar>();
+             currentAvatar.InicializarAvatar(double.Parse(datos[i].GPNC), datos[i].Nombre, datos[i].Apellido, int.Parse(datos[i].Faltas), int.Parse(datos[i].Presente), int.Parse(datos[i].Tarde), int.Parse(datos[i].FaltasMedicas), int.Parse(datos[i].FaltasSustituidas), int.Parse(datos[i].RefRI), int.Parse(datos[i].RefRe), int.Parse(datos[i].UdeF),float.Parse(datos[i].Invitados), int.Parse(datos[i].RefDI), int.Parse(datos[i].RefDE), float.Parse(datos[i].UnoaUno));
+             Todos.Add(currentAvatar);
 
-        for (int i=0; i < NumeroAvatares; i++) {
-            GameObject go=Instantiate(miiAvatar, new Vector3(Random.Range(-10f,10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
-            Avatar currentAvatar = go.GetComponent<Avatar>();
-            Todos.Add(currentAvatar);
+             GameObject obj = new GameObject();
 
-            GameObject obj = new GameObject();
-            /*Instantiate(obj, transform.position, Quaternion.identity);*/
-            Transform currentrans = obj.GetComponent<Transform>();
-            //print(currentrans);
-            objetivos.Add(currentrans);
-            currentAvatar.setObjective(currentrans, true);
+             Transform currentrans = obj.GetComponent<Transform>();
 
+             objetivos.Add(currentrans);
+             currentAvatar.setObjective(currentrans, true);
+             //Debug.Log(datos[i].Nombre);
         }
 
         OcultarDialogo();
@@ -47,23 +55,15 @@ public class Manager : MonoBehaviour
        
     }
 
-    public void MostrarDialogo(Vector3 avatarPos,string nombre, int puntos, int faltas, bool genero)
+    public void MostrarDialogo(Vector3 avatarPos,string nombre, string param1, string param2, string param3)
     {
         MiiDisplay.SetBool("Show",true);
         DialogBox.transform.position = mainCam.WorldToScreenPoint(avatarPos);
 
         Name.text = "Nombre: "+nombre;
-        Age.text = "Puntuacion: " + puntos.ToString();
-        Weight.text = "Faltas: "+ faltas.ToString();
-
-        if (genero)
-        {
-            Gender.text = "Genero: Mujer";
-        }
-        else
-        {
-            Gender.text = "Genero: Hombre";
-        }
+        Param1.text = param1;
+        Param2.text = param2;
+        Param3.text = param3;
     }
 
     public void OcultarDialogo()
@@ -71,48 +71,31 @@ public class Manager : MonoBehaviour
         MiiDisplay.SetBool("Show", false);
     }
 
-    public void OrdenarPorPuntuacion()
+    public void OrdenarPor(int opcion)
     {
-
-        if (lastselected != 1)
+        switch (opcion)
         {
-            lastselected = 1;
-            AvatarSortByScore AvScore = new AvatarSortByScore();
-            Todos.Sort(AvScore);
-            int conter = 0;
-            setWaypoints();
-            foreach (Avatar ar in Todos)
-            {
-                ar.setObjective(objetivos[conter], false);
-                conter++;
-            }
+            case 1: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Puntuacion).Reverse().ToList(); } break;
+            case 2: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Faltas).Reverse().ToList(); } break;
+            case 4: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Nombre).ToList(); } break;
+            case 5: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.GNC).Reverse().ToList(); } break;
+            case 6: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Invitados).Reverse().ToList(); } break;
+            case 7: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Formaciones).Reverse().ToList(); } break;
+            case 8: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGE).Reverse().ToList(); } break;
+            case 9: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Uno_a_Uno).Reverse().ToList(); } break;
+            default: break;
         }
-        
+
+        setwayandobjectives();        
     }
 
-    public void OrdenarPorFaltas()
-    {
-        if (lastselected != 2)
-        {
-            lastselected = 2;
-            AvatarSortByAssistance AvAssistance = new AvatarSortByAssistance();
-            Todos.Sort(AvAssistance);
-            int conter = 0;
-            setWaypoints();
-            foreach (Avatar ar in Todos)
-            {
-                ar.setObjective(objetivos[conter], false);
-                conter++;
-            }
-        }
-    }
 
     public void ordenarPorGenero()
     {
         if (lastselected != 3)
         {
             lastselected = 3;
-            Todos = Todos.OrderBy(a => a.mujer).ToList();
+            Todos = Todos.OrderBy(a => a.mujer).Reverse().ToList();
             int conter = 0;
             nMujeres = 0;
             foreach (Avatar ar in Todos)
@@ -131,38 +114,18 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void ordenarPorNombre()
+
+    public void setwayandobjectives()
     {
-        if (lastselected != 4)
+        int conter = 0;
+        setWaypoints();
+        foreach (Avatar ar in Todos)
         {
-            lastselected = 4;
-            Todos = Todos.OrderBy(a => a.Nombre).ToList();
-            int conter = 0;
-            setWaypoints();
-            foreach (Avatar ar in Todos)
-            {
-                ar.setObjective(objetivos[conter], false);
-                conter++;
-            }
+            ar.setObjective(objetivos[conter], false);
+            conter++;
         }
     }
 
-    public void ordenarPorColor()
-    {
-        if (lastselected != 5)
-        {
-            lastselected = 5;
-            AvatarSortByColor AvColor = new AvatarSortByColor();
-            Todos.Sort(AvColor);
-            int conter = 0;
-            setWaypoints();
-            foreach (Avatar ar in Todos)
-            {
-                ar.setObjective(objetivos[conter], false);
-                conter++;
-            }
-        }
-    }
     void setWaypoints()
     {
         int filas = 1, columnas = 1;
@@ -280,49 +243,4 @@ public class Manager : MonoBehaviour
     }
 }
 
-class AvatarSortByScore : IComparer<Avatar>
-{
-    #region IComparer<Avatar> Members
 
-    public int Compare(Avatar x, Avatar y)
-    {
-        if (x.Puntuacion < y.Puntuacion) return 1;
-        else if (x.Puntuacion > y.Puntuacion) return -1;
-        else return 0;
-    }
-
-    #endregion
-}
-
-class AvatarSortByAssistance : IComparer<Avatar>
-{
-    #region IComparer<Avatar> Members
-
-    public int Compare(Avatar x, Avatar y)
-    {
-        if (x.Faltas > y.Faltas) return 1;
-        else if (x.Faltas < y.Faltas) return -1;
-        else return 0;
-    }
-
-    #endregion
-}
-
-class AvatarSortByColor : IComparer<Avatar>
-{
-    #region IComparer<Avatar> Members
-    public int Compare(Avatar a, Avatar b)
-    {
-        float ha, sa, va;
-        Color.RGBToHSV(a.MiColor,out ha,out sa,out va);
-        float hb, sb, vb;
-        Color.RGBToHSV(b.MiColor, out hb, out sb, out vb);
-        if (ha > hb)
-            return 1;
-        else if (ha < hb)
-            return -1;
-       
-        return 0;
-    }
-    #endregion
-}

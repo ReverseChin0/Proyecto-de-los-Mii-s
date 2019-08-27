@@ -5,7 +5,6 @@ using UnityEngine;
 public class onMouseHover : MonoBehaviour
 {
     [SerializeField]
-    bool suelo = false;
 
     bool hoverable = true;
 
@@ -14,7 +13,6 @@ public class onMouseHover : MonoBehaviour
     public Avatar miavatar;
     SceneChanger[] mychangers;
 
-    public GameObject btnCheck;
     void Start()
     {
         mychangers = FindObjectsOfType<SceneChanger>();
@@ -27,26 +25,27 @@ public class onMouseHover : MonoBehaviour
             changer = mychangers[0];
         }
         
-        if (!suelo)
-        {
-            miavatar = GetComponent<Avatar>();
-            miMan = FindObjectOfType<Manager>();
-        }
+        miavatar = GetComponent<Avatar>();
+        miMan = FindObjectOfType<Manager>();
     }
 
     public void OnMouseEnter()
     {
-        if (!suelo && hoverable)
+      
+        if (hoverable)
         {
             Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
-            miMan.MostrarDialogo(newpos, miavatar.Nombre, miavatar.Puntuacion, miavatar.Faltas, miavatar.mujer);
+            switch (miMan.lastselected)
+            {
+                default: miMan.MostrarDialogo(newpos, miavatar.Nombre,"Puntuacion: "+ miavatar.Puntuacion.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + (miavatar.RefGE+ miavatar.RefGI).ToString()); break;
+            }   
         }
         
     }
 
     public void OnMouseExit()
     {
-        if (!suelo && hoverable)
+        if (hoverable)
         {
             miMan.OcultarDialogo();
         }
@@ -54,15 +53,12 @@ public class onMouseHover : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (!suelo && hoverable)
+        if (hoverable)
         {
             changer.miAvatar = gameObject.GetComponent<Avatar>();
             miMan.ActivarBtnChange(true);
         }
-        else
-        {
-            //changer.ActivarBtnChange(false);
-        }
+      
     }
 
     public void setHover(bool t)

@@ -7,11 +7,11 @@ using UnityEngine;
 public class Avatar : MonoBehaviour
 {
     [Header("Avatar Parameters")]
-    public string Nombre;
+    public string Nombre, Apellido;
     public Color MiColor;
     [Space(3f)]
-    public int Puntuacion, Faltas, Presencias, Tarde, Medica, Sustituto, RefReci, Formaciones, Puntualidad;
-    public float Invitados, RefGene, Uno_a_Uno;
+    public int Faltas, Presencias, Tarde, Medica, Sustituto, Formaciones, RefGI, RefGE, RefRI, RefRE;
+    public float Invitados, Uno_a_Uno, Puntuacion;
     public double GNC;
     public bool mujer=true;
     
@@ -26,47 +26,40 @@ public class Avatar : MonoBehaviour
 
     Vector3 rumbo;
     Vector3 direction;
-    float distancia=0, speed;
-    const string glyphs = "abcdefghijklmnopqrstuvwxyz";
+    float distancia=0, speed, rotationspeed=5f;
 
     void Start()
     {
         speed = 5;
-        Puntuacion = Random.Range(0, 100);
-        int nombrelength = Random.Range(3, 12);
-        for (int i = 0; i < nombrelength; i++)
-        {
-            Nombre += glyphs[Random.Range(0, glyphs.Length)];
-        }
-
         startSpeed = speed;
-        mujer = (Random.Range(0,2) == 0);
-        if (Puntuacion < 30)
-        {
-            MiColor = new Color(0, 0, 0);
-        }
-        else if (Puntuacion < 50)
-        {
-            MiColor = new Color(1f, 0, 0);
-        }else if (Puntuacion < 70)
-        {
-            MiColor = new Color(1f, 1f, 0);
-        }
-        else
-        {
-            MiColor = new Color(0, 1f, 0);
-        }
-        mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
-        mat.material.SetColor("_Color",MiColor);
         rig = GetComponent<Rigidbody>();
         myColi = GetComponent<Collider>();
         if(Anim==null)Anim = GetComponent<Animator>();
-
-       
-        Faltas = Random.Range(0,5);
     }
 
+    public void InicializarAvatar(double gnc, string nombre, string apelli,int faltas,int prese,int tarde, int medi, int susti, int refri, int refre, int forma, float invi, int refgi, int refge, float uno)
+    {
+        GNC = gnc;
+        Nombre = nombre;
+        Apellido = apelli;
+        mujer = (Random.Range(0,2) == 0);
+        Faltas = faltas;
+        Presencias = prese;
+        Tarde = tarde;
+        Medica = medi;
+        Sustituto = susti;
+        RefRI = refri;
+        RefRE = refre;
+        Formaciones = forma;
+        //Puntualidad = puntu;
 
+        Invitados = invi;
+        RefGI = refgi;
+        RefGE = refge;
+        Uno_a_Uno = uno;
+
+        CalculateAllScores();
+    }
     void Update()
     {
         if (!arrived)
@@ -87,13 +80,20 @@ public class Avatar : MonoBehaviour
                 setStatic(true);
                 speed = startSpeed;
                 transform.LookAt(transform.position+Vector3.back);
+                
                 primerRumbo = false;
             }
             else if(rumbo.sqrMagnitude < 0.8f)
             {
                 speed = startSpeed * .15f;
+                Quaternion targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
             }
-            else { speed = startSpeed; }
+            else {
+                speed = startSpeed;
+                Quaternion targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
+            }
         }
     }
 
@@ -109,7 +109,7 @@ public class Avatar : MonoBehaviour
     {
         if (!primerRumbo)
         {
-            transform.LookAt(objective);
+            //transform.LookAt(objective);
             primerRumbo = true;
             setStatic(false);
         }
@@ -170,7 +170,7 @@ public class Avatar : MonoBehaviour
         myColi.isTrigger = t;
         rig.isKinematic = t;
     }
-    /*public int CalculateAllScores()
+    public void CalculateAllScores()
     {
         Puntuacion = 0;
         //=======Absentismo=======
@@ -190,13 +190,13 @@ public class Avatar : MonoBehaviour
             Puntuacion += 5;
 
         //======Referencias por Semana======
-        if (RefGene >= 1.20f)
+        if (RefGE+RefGI >= 1.20f)
             Puntuacion += 20;
-        else if (RefGene >= 1.00f)
+        else if (RefGE + RefGI >= 1.00f)
             Puntuacion += 15;
-        else if (RefGene >= 0.75f)
+        else if (RefGE + RefGI >= 0.75f)
             Puntuacion += 10;
-        else if (RefGene >= 0.50f)
+        else if (RefGE + RefGI >= 0.50f)
             Puntuacion += 5;
 
         //======Invitados por Semana======
@@ -216,7 +216,7 @@ public class Avatar : MonoBehaviour
             Puntuacion += 5;
 
         //======Puntualidad======
-        if (Puntualidad == 0)
+        if (Tarde == 0)
             Puntuacion += 5;
 
         //======Unidades de Formacion======
@@ -227,6 +227,23 @@ public class Avatar : MonoBehaviour
         else if (Puntuacion == 1)
             Puntuacion += 5;
 
-        return Puntuacion;
-    }*/
+        if (Puntuacion < 30)
+        {
+            MiColor = new Color(0, 0, 0);
+        }
+        else if (Puntuacion < 50)
+        {
+            MiColor = new Color(1f, 0, 0);
+        }
+        else if (Puntuacion < 70)
+        {
+            MiColor = new Color(1f, 1f, 0);
+        }
+        else
+        {
+            MiColor = new Color(0, 1f, 0);
+        }
+        mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
+        mat.material.SetColor("_Color", MiColor);
+    }
 }

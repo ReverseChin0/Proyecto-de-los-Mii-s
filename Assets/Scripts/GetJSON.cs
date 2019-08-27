@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class GetJSON : MonoBehaviour
 {
+    public Manager miman;
+
     void Start()
     {
         StartCoroutine(Service());
@@ -26,8 +28,9 @@ public class GetJSON : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.downloadHandler);
+            //Debug.Log(www.downloadHandler);
             List<JsonData> datos = JsonConvert.DeserializeObject<List<JsonData>>(www.downloadHandler.text);
+            miman.StartManager(datos);
         }
     }
 }
