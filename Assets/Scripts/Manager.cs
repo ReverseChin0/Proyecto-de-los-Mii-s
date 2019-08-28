@@ -18,6 +18,8 @@ public class Manager : MonoBehaviour
     [Tooltip("Cuantos mii´s, habrá en la simulacion")]
     public int lastselected = 0;//0=idlewalk,1=edad,2=peso,3=genero,,4=nombre,5=color;
     int NumeroAvatares,nMujeres = 0;
+    [SerializeField]
+    ReporteGeneral Reporte;
 
     public float limitex=10, limitez=10;
 
@@ -36,6 +38,7 @@ public class Manager : MonoBehaviour
              GameObject go = Instantiate(miiAvatar, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
              Avatar currentAvatar = go.GetComponent<Avatar>();
              currentAvatar.InicializarAvatar(double.Parse(datos[i].GPNC), datos[i].Nombre, datos[i].Apellido, int.Parse(datos[i].Faltas), int.Parse(datos[i].Presente), int.Parse(datos[i].Tarde), int.Parse(datos[i].FaltasMedicas), int.Parse(datos[i].FaltasSustituidas), int.Parse(datos[i].RefRI), int.Parse(datos[i].RefRe), int.Parse(datos[i].UdeF),float.Parse(datos[i].Invitados), int.Parse(datos[i].RefDI), int.Parse(datos[i].RefDE), float.Parse(datos[i].UnoaUno));
+             Reporte.addDatos(double.Parse(datos[i].GPNC), int.Parse(datos[i].Faltas), int.Parse(datos[i].Presente), int.Parse(datos[i].UdeF), float.Parse(datos[i].Invitados), int.Parse(datos[i].RefDI), int.Parse(datos[i].RefDE), float.Parse(datos[i].UnoaUno));
              Todos.Add(currentAvatar);
 
              GameObject obj = new GameObject();
@@ -44,9 +47,9 @@ public class Manager : MonoBehaviour
 
              objetivos.Add(currentrans);
              currentAvatar.setObjective(currentrans, true);
-             //Debug.Log(datos[i].Nombre);
         }
-
+        Reporte.Calcular();
+        Reporte.ImprimirRG();
         OcultarDialogo();
     }
 
