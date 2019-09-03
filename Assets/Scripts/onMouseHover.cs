@@ -16,6 +16,7 @@ public class onMouseHover : MonoBehaviour
     void Start()
     {
         mychangers = FindObjectsOfType<SceneChanger>();
+        //print(mychangers.Length);
         if (mychangers.Length > 1)
         {
             changer = mychangers[mychangers.Length-1];
