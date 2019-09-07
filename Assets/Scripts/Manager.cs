@@ -78,14 +78,35 @@ public class Manager : MonoBehaviour
     {
         switch (opcion)
         {
+            //derecho
             case 1: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Puntuacion).Reverse().ToList(); } break;
             case 2: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Faltas).Reverse().ToList(); } break;
             case 4: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Nombre).ToList(); } break;
             case 5: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.GNC).Reverse().ToList(); } break;
             case 6: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Invitados).Reverse().ToList(); } break;
             case 7: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Formaciones).Reverse().ToList(); } break;
-            case 8: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGE).Reverse().ToList(); } break;
+            case 8: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGTotal).Reverse().ToList(); } break;
             case 9: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Uno_a_Uno).Reverse().ToList(); } break;
+            //reves
+            case 10: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Puntuacion).ToList(); } break;
+            case 11: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Faltas).ToList(); } break;
+            case 12: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Nombre).Reverse().ToList(); } break;
+            case 13: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.GNC).ToList(); } break;
+            case 14: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Invitados).ToList(); } break;
+            case 15: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Formaciones).ToList(); } break;
+            case 16: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGTotal).ToList(); } break;
+            case 17: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.Uno_a_Uno).ToList(); } break;
+            
+                //Referencias Dadas/Recibidas
+            case 18: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGI).Reverse().ToList(); } break;
+            case 19: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGI).ToList(); } break;
+            case 20: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGE).Reverse().ToList(); } break;
+            case 21: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefGE).ToList(); } break;
+
+            case 22: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefRI).Reverse().ToList(); } break;
+            case 23: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefRI).ToList(); } break;
+            case 24: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefRE).Reverse().ToList(); } break;
+            case 25: if (opcion != lastselected) { lastselected = opcion; Todos = Todos.OrderBy(a => a.RefRE).ToList(); } break;
             default: break;
         }
 

@@ -9,15 +9,18 @@ public class Avatar : MonoBehaviour
     [Header("Avatar Parameters")]
     public string Nombre, Apellido;
     public Color MiColor;
-    [Space(3f)]
-    public int Faltas, Presencias, Tarde, Medica, Sustituto, Formaciones, RefGI, RefGE, RefRI, RefRE;
-    public float Invitados, Uno_a_Uno, Puntuacion;
+    [HideInInspector]
+    public int Faltas, Presencias, Tarde, Medica, Sustituto, Formaciones,RefGTotal, RefRTotal, RefGI, RefGE, RefRI, RefRE;
+    [HideInInspector]
+    public float Invitados, Uno_a_Uno, Puntuacion, maxHeadingChange = 30;
+    [HideInInspector]
     public double GNC;
+    [HideInInspector]
     public bool mujer=true;
     
     Transform objective;
-    bool arrived=true, directed=false, moving=false, primerRumbo=false;
-    float startSpeed;
+    bool arrived=true, directed=false, moving=false, primerRumbo=false, wander=true;
+    float startSpeed, directionChangeInterval = 1.5f;
 
     Renderer mat;
     Rigidbody rig;
@@ -26,6 +29,7 @@ public class Avatar : MonoBehaviour
 
     Vector3 rumbo;
     Vector3 direction;
+    Quaternion targetRotation;
     float distancia=0, speed, rotationspeed=5f;
 
     void Start()
@@ -50,12 +54,13 @@ public class Avatar : MonoBehaviour
         Sustituto = susti;
         RefRI = refri;
         RefRE = refre;
+        RefRTotal = refri + refre;
         Formaciones = forma;
-        //Puntualidad = puntu;
 
         Invitados = invi;
         RefGI = refgi;
         RefGE = refge;
+        RefGTotal = refgi + refge;
         Uno_a_Uno = uno;
 
         CalculateAllScores();
@@ -86,12 +91,12 @@ public class Avatar : MonoBehaviour
             else if(rumbo.sqrMagnitude < 0.8f)
             {
                 speed = startSpeed * .15f;
-                Quaternion targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                 targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
             }
             else {
                 speed = startSpeed;
-                Quaternion targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                 targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
             }
         }
@@ -102,6 +107,11 @@ public class Avatar : MonoBehaviour
         if (!arrived)
         {
             rig.MovePosition(transform.position + direction * Time.deltaTime * speed);            
+        }
+
+        if (wander)
+        {
+            rig.MovePosition(transform.position + direction * Time.deltaTime * speed);
         }
     }
 
@@ -245,5 +255,25 @@ public class Avatar : MonoBehaviour
         }
         mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
         mat.material.SetColor("_Color", MiColor);
+    }
+
+	/// Calculates a new direction to move towards
+	void NewHeading()
+    {
+        float floor = transform.eulerAngles.y - maxHeadingChange;
+        float ceil = transform.eulerAngles.y + maxHeadingChange;
+        float rumbo = Random.Range(floor, ceil);
+        direction = new Vector3(0, rumbo, 0);
+    }
+
+    /// Repeatedly calculates a new direction to move towards.
+    /// Use this instead of MonoBehaviour.InvokeRepeating so that the interval can be changed at runtime.
+    IEnumerator NewHeadingRoutine()
+    {
+        while (wander)
+        {
+            NewHeading();
+            yield return new WaitForSeconds(directionChangeInterval);
+        }
     }
 }

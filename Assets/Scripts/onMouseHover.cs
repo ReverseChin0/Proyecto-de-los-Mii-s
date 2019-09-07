@@ -38,7 +38,28 @@ public class onMouseHover : MonoBehaviour
             Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             switch (miMan.lastselected)
             {
-                default: miMan.MostrarDialogo(newpos, miavatar.Nombre,"Puntuacion: "+ miavatar.Puntuacion.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + (miavatar.RefGE+ miavatar.RefGI).ToString()); break;
+                
+                case 5: miMan.MostrarDialogo(newpos, miavatar.Nombre, "GNC: " + miavatar.GNC.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+                case 6: miMan.MostrarDialogo(newpos, miavatar.Nombre, "Invitados: " + miavatar.Invitados.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+                case 7: miMan.MostrarDialogo(newpos, miavatar.Nombre, "UdeF: " + miavatar.Formaciones.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+                case 8: miMan.MostrarDialogo(newpos, miavatar.Nombre, "RefGeneradas: " + miavatar.RefGTotal.ToString(), "Internas: " + miavatar.RefGI.ToString(), "Externas: " + miavatar.RefGE.ToString()); break;
+                case 9: miMan.MostrarDialogo(newpos, miavatar.Nombre, "Uno a Uno: " + miavatar.Uno_a_Uno.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+
+                case 13: miMan.MostrarDialogo(newpos, miavatar.Nombre, "GNC: " + miavatar.GNC.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+                case 14: miMan.MostrarDialogo(newpos, miavatar.Nombre, "Invitados: " + miavatar.Invitados.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+                case 15: miMan.MostrarDialogo(newpos, miavatar.Nombre, "UdeF: " + miavatar.Formaciones.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+                case 16: miMan.MostrarDialogo(newpos, miavatar.Nombre, "RefGeneradas: " + miavatar.RefGTotal.ToString(), "Internas: " + miavatar.RefGI.ToString(), "Externas: " + miavatar.RefGE.ToString()); break;
+                case 17: miMan.MostrarDialogo(newpos, miavatar.Nombre, "Uno a Uno: " + miavatar.Uno_a_Uno.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
+
+                case 18:
+                case 19: 
+                case 20:
+                case 21: miMan.MostrarDialogo(newpos, miavatar.Nombre, "RefGeneradas: " + miavatar.RefGTotal.ToString(), "Internas: " + miavatar.RefGI.ToString(), "Externas: " + miavatar.RefGE.ToString()); break;
+                case 22:
+                case 23:
+                case 24:
+                case 25: miMan.MostrarDialogo(newpos, miavatar.Nombre, "RefRecibidas: " + miavatar.RefRTotal.ToString(), "Internas: " + miavatar.RefRI.ToString(), "Externas: " + miavatar.RefRE.ToString()); break;
+                default: miMan.MostrarDialogo(newpos, miavatar.Nombre,"Puntuacion: "+ miavatar.Puntuacion.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
             }   
         }
         
