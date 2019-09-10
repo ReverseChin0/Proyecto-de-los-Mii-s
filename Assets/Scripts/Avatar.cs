@@ -20,7 +20,7 @@ public class Avatar : MonoBehaviour
     
     Transform objective;
     bool arrived=true, directed=false, moving=false, primerRumbo=false, wander=true;
-    float startSpeed, directionChangeInterval = 1.5f;
+    float startSpeed, directionChangeInterval = 3.0f;
 
     Renderer mat;
     Rigidbody rig;
@@ -67,37 +67,41 @@ public class Avatar : MonoBehaviour
     }
     void Update()
     {
-        if (!arrived)
+        if (!wander)
         {
-            
-            if (!directed)
+            if (!arrived)
             {
-                directed = true;
-                StartCoroutine(setDirection(0.25f));
-            }
 
-            if (rumbo.sqrMagnitude <= 0.04f)
-            {
-                StopCoroutine(setDirection(0));
-                arrived = true;
-                Anim.SetBool("Moving", false);
-                transform.position = new Vector3(objective.position.x, 0.01f, objective.position.z);
-                setStatic(true);
-                speed = startSpeed;
-                transform.LookAt(transform.position+Vector3.back);
-                
-                primerRumbo = false;
-            }
-            else if(rumbo.sqrMagnitude < 0.8f)
-            {
-                speed = startSpeed * .15f;
-                 targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
-            }
-            else {
-                speed = startSpeed;
-                 targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
+                if (!directed)
+                {
+                    directed = true;
+                    StartCoroutine(setDirection(0.25f));
+                }
+
+                if (rumbo.sqrMagnitude <= 0.04f)
+                {
+                    StopCoroutine(setDirection(0));
+                    arrived = true;
+                    Anim.SetBool("Moving", false);
+                    transform.position = new Vector3(objective.position.x, 0.01f, objective.position.z);
+                    setStatic(true);
+                    speed = startSpeed;
+                    transform.LookAt(transform.position + Vector3.back);
+
+                    primerRumbo = false;
+                }
+                else if (rumbo.sqrMagnitude < 0.8f)
+                {
+                    speed = startSpeed * .15f;
+                    targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
+                }
+                else
+                {
+                    speed = startSpeed;
+                    targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
+                }
             }
         }
     }
@@ -135,7 +139,6 @@ public class Avatar : MonoBehaviour
 
     public void setObjective(Transform obj, bool arrive)
     {
-
         objective = obj;
         arrived = arrive;
         if (Anim==null) { Anim = GetComponent<Animator>(); }
@@ -262,8 +265,21 @@ public class Avatar : MonoBehaviour
     {
         float floor = transform.eulerAngles.y - maxHeadingChange;
         float ceil = transform.eulerAngles.y + maxHeadingChange;
-        float rumbo = Random.Range(floor, ceil);
-        direction = new Vector3(0, rumbo, 0);
+        
+        directionChangeInterval = Random.Range(0.5f, 3f);
+
+        int yesno = Random.Range(0, 1);
+
+        if(yesno == 1)
+        {
+            float rumbo = Random.Range(floor, ceil);
+            float rumbo2 = Random.Range(floor, ceil);
+            direction = new Vector3(rumbo2, 0, rumbo);
+        }
+        else
+        {
+            direction = new Vector3(0, 0, 0);
+        }
     }
 
     /// Repeatedly calculates a new direction to move towards.
