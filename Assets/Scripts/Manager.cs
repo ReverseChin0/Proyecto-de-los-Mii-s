@@ -41,6 +41,8 @@ public class Manager : MonoBehaviour
             Reporte.addDatos(double.Parse(datos[i].GPNC), int.Parse(datos[i].Faltas), int.Parse(datos[i].Presente), int.Parse(datos[i].UdeF), float.Parse(datos[i].Invitados), int.Parse(datos[i].RefDI), int.Parse(datos[i].RefDE), float.Parse(datos[i].UnoaUno));
             Todos.Add(currentAvatar);
 
+            go.name = "avatar_" + datos[i].Nombre;
+            
             GameObject obj = new GameObject();
 
             Transform currentrans = obj.GetComponent<Transform>();
@@ -145,6 +147,7 @@ public class Manager : MonoBehaviour
         setWaypoints();
         foreach (Avatar ar in Todos)
         {
+            ar.setWander(false);
             ar.setObjective(objetivos[conter], false);
             conter++;
         }
@@ -269,6 +272,14 @@ public class Manager : MonoBehaviour
     public void ToggleMenuMoreOptions(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
+    }
+
+    public void RomperFormacion()
+    {
+        foreach(Avatar av in Todos)
+        {
+            av.setWander(true);
+        }
     }
 }
 

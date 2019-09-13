@@ -19,7 +19,7 @@ public class Avatar : MonoBehaviour
     public bool mujer=true;
     
     Transform objective;
-    bool arrived=true, directed=false, moving=false, primerRumbo=false, wander=true;
+    bool arrived = true, directed = false, moving = false, primerRumbo = false, wander = true;
     float startSpeed, directionChangeInterval = 3.0f;
 
     Renderer mat;
@@ -39,6 +39,8 @@ public class Avatar : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         myColi = GetComponent<Collider>();
         if(Anim==null)Anim = GetComponent<Animator>();
+ 
+        StartCoroutine(NewHeadingRoutine());
     }
 
     public void InicializarAvatar(double gnc, string nombre, string apelli,int faltas,int prese,int tarde, int medi, int susti, int refri, int refre, int forma, float invi, int refgi, int refge, float uno)
@@ -71,7 +73,6 @@ public class Avatar : MonoBehaviour
         {
             if (!arrived)
             {
-
                 if (!directed)
                 {
                     directed = true;
@@ -115,7 +116,7 @@ public class Avatar : MonoBehaviour
 
         if (wander)
         {
-            rig.MovePosition(transform.position + direction * Time.deltaTime * speed);
+            rig.MovePosition(transform.position + direction * Time.deltaTime * speed * 0.5f);
         }
     }
 
@@ -260,25 +261,49 @@ public class Avatar : MonoBehaviour
         mat.material.SetColor("_Color", MiColor);
     }
 
+    public void setWander(bool f)
+    {
+        if (f)
+        {
+            StopCoroutine(setDirection(0));
+            arrived = true;
+            Anim.SetBool("Moving", false);
+            speed = startSpeed;
+            transform.LookAt(transform.position + Vector3.back);
+            primerRumbo = false;
+
+            rumbo = Vector3.zero;
+            distancia = 0;
+
+            wander = f;
+            StartCoroutine(NewHeadingRoutine());
+        }
+        wander = f;
+    }
 	/// Calculates a new direction to move towards
 	void NewHeading()
     {
-        float floor = transform.eulerAngles.y - maxHeadingChange;
-        float ceil = transform.eulerAngles.y + maxHeadingChange;
-        
         directionChangeInterval = Random.Range(0.5f, 3f);
+        int yesno = Random.Range(0, 2);
 
-        int yesno = Random.Range(0, 1);
-
-        if(yesno == 1)
+        if (yesno == 1)
         {
-            float rumbo = Random.Range(floor, ceil);
-            float rumbo2 = Random.Range(floor, ceil);
-            direction = new Vector3(rumbo2, 0, rumbo);
+            if(transform.position.sqrMagnitude < (15*15))
+            {
+                float rumbo1 = Random.Range(-30, 30);
+                float rumbo2 = Random.Range(-30, 30);
+                direction = new Vector3(rumbo2, 0, rumbo1);
+                direction.Normalize();
+            }
+            else
+            {
+                direction = -transform.position;
+                direction.Normalize();
+            }
         }
         else
         {
-            direction = new Vector3(0, 0, 0);
+            direction = Vector3.zero;
         }
     }
 
@@ -291,5 +316,6 @@ public class Avatar : MonoBehaviour
             NewHeading();
             yield return new WaitForSeconds(directionChangeInterval);
         }
+
     }
 }
