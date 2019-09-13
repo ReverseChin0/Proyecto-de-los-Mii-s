@@ -15,6 +15,7 @@ public class mono_gmail : MonoBehaviour
     {
         //Debug.Log( "El destino: " + Destinatario.text + ", El Remitente:" + Remitente.text + " ,Password:"+ Contrasena.text +" , Mensaje:" + Mensaje.text);
         MailLogic(Destinatario.text, Remitente.text, Contrasena.text, Mensaje.text, Asunto.text);
+        //Para enviar correos
     }
 
     void MailLogic(string destino, string remi,string pass, string mssg, string subj)
@@ -28,7 +29,8 @@ public class mono_gmail : MonoBehaviour
 
         SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
         smtpServer.Port = 587;
-        smtpServer.Credentials = new System.Net.NetworkCredential(remi, pass) as ICredentialsByHost;
+        smtpServer.Credentials = new System.Net.NetworkCredential(remi, "mezsjzyezxfaftan") as ICredentialsByHost;
+        //Se genera en el correo en acceso a apps de terceros              esta cosa
         smtpServer.EnableSsl = true;
         ServicePointManager.ServerCertificateValidationCallback =
             delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
