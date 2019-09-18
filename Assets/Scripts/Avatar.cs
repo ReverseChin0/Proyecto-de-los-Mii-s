@@ -7,7 +7,7 @@ using UnityEngine;
 public class Avatar : MonoBehaviour
 {
     [Header("Avatar Parameters")]
-    public string Nombre, Apellido;
+    public string Nombre, Apellido, Correo;
     public Color MiColor;
     [HideInInspector]
     public int Faltas, Presencias, Tarde, Medica, Sustituto, Formaciones,RefGTotal, RefRTotal, RefGI, RefGE, RefRI, RefRE;
