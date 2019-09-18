@@ -24,7 +24,7 @@ public class StatsViewer : MonoBehaviour
     {
         if(MiAvatar != null)
         {
-            textstats[0].text = "Nombre:" + MiAvatar.Nombre +" "+ MiAvatar.Apellido;
+            textstats[0].text = "Nombre:" + MiAvatar.Nombre /*+" "+ MiAvatar.Apellido*/;
             textstats[1].text = "Faltas:" + MiAvatar.Faltas;
             textstats[2].text = "Presencias:" + MiAvatar.Presencias;
             textstats[3].text = "Tarde:" + MiAvatar.Tarde;

@@ -71,6 +71,7 @@ public class SceneChanger : MonoBehaviour
         Transform pos = miAvatar.gameObject.transform;
         pos.position = new Vector3(-2.5f, 5, -6.5f);
         pos.LookAt(pos.position + Vector3.back);
+        miAvatar.setWander(false);
     }
 
 }

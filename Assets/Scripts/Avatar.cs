@@ -186,7 +186,8 @@ public class Avatar : MonoBehaviour
     }
     public void CalculateAllScores()
     {
-        Puntuacion = 0;
+        /*Puntuacion = 0;
+
         //=======Absentismo=======
         if (Faltas == 2)
             Puntuacion += 5;
@@ -239,7 +240,7 @@ public class Avatar : MonoBehaviour
         else if (Formaciones == 2)
             Puntuacion += 10;
         else if (Puntuacion == 1)
-            Puntuacion += 5;
+            Puntuacion += 5;*/
 
         if (Puntuacion < 30)
         {

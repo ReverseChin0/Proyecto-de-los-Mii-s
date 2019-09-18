@@ -28,7 +28,7 @@ public class Manager : MonoBehaviour
 
     }
 
-    public void StartManager(List<JsonData> datos)
+    /*public void StartManager(List<JsonData> datos)
     {
         Todos = new List<Avatar>();
         objetivos = new List<Transform>();
@@ -43,6 +43,34 @@ public class Manager : MonoBehaviour
 
             go.name = "avatar_" + datos[i].Nombre;
             
+            GameObject obj = new GameObject();
+
+            Transform currentrans = obj.GetComponent<Transform>();
+
+            objetivos.Add(currentrans);
+            currentAvatar.setObjective(currentrans, true);
+        }
+        Reporte.Calcular();
+        Reporte.ImprimirRG();
+        OcultarDialogo();
+    }*/
+
+    public void StartManager2(List<JsonData> datos)
+    {
+        Todos = new List<Avatar>();
+        objetivos = new List<Transform>();
+        NumeroAvatares = datos.Count;
+        for (int i = 0; i < datos.Count; i++)
+        {
+            GameObject go = Instantiate(miiAvatar, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
+            Avatar currentAvatar = go.GetComponent<Avatar>();
+            currentAvatar.Puntuacion = float.Parse(datos[i].Puntos);
+            currentAvatar.InicializarAvatar(double.Parse(datos[i].GNC), datos[i].Miembro, datos[i].Miembro, int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].L), int.Parse(datos[i].M), int.Parse(datos[i].S), int.Parse(datos[i].RR), int.Parse(datos[i].RR), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau));
+            Reporte.addDatos(double.Parse(datos[i].GNC), int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau));
+            Todos.Add(currentAvatar);
+
+            go.name = "avatar_" + datos[i].Miembro.Substring(0, datos[i].Miembro.IndexOf(" ")); ;
+
             GameObject obj = new GameObject();
 
             Transform currentrans = obj.GetComponent<Transform>();
