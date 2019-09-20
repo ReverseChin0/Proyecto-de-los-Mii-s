@@ -28,7 +28,7 @@ public class Manager : MonoBehaviour
 
     }
 
-    /*public void StartManager(List<JsonData> datos)
+    public void StartManager(List<JData> datos)
     {
         Todos = new List<Avatar>();
         objetivos = new List<Transform>();
@@ -53,7 +53,7 @@ public class Manager : MonoBehaviour
         Reporte.Calcular();
         Reporte.ImprimirRG();
         OcultarDialogo();
-    }*/
+    }
 
     public void StartManager2(List<JsonData> datos)
     {
