@@ -9,7 +9,7 @@ public class Manager : MonoBehaviour
 {
     public Camera mainCam;
     public Animator MiiDisplay;
-    public GameObject DialogBox, btnCheckCharacter;
+    public GameObject DialogBox, btnCheckCharacter, mailchanger;
     public Text Name, Param1, Param2, Param3;
     [Header("Avatar Behaviour")]
     List<Avatar> Todos;
@@ -295,6 +295,7 @@ public class Manager : MonoBehaviour
     public void ActivarBtnChange(bool activar)
     {
         btnCheckCharacter.SetActive(activar);
+        mailchanger.SetActive(activar);
     }
     //=======Toggle======
     public void ToggleMenuMoreOptions(GameObject obj)

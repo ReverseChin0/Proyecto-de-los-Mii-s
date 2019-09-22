@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetJSON : MonoBehaviour
 {
@@ -55,6 +56,11 @@ public class GetJSON : MonoBehaviour
             //Debug.Log(www.downloadHandler);
             
         }
+    }
+
+    public void setearExcel(Text mitets)
+    {
+        tipoexcel = int.Parse(mitets.text);
     }
 }
 
