@@ -78,7 +78,7 @@ public class onMouseHover : MonoBehaviour
         if (hoverable)
         {
             changer.miAvatar = gameObject.GetComponent<Avatar>();
-            miMan.ActivarBtnChange(true);
+            miMan.ActivarBtnChange(true, changer.miAvatar.Correo);
         }
       
     }
