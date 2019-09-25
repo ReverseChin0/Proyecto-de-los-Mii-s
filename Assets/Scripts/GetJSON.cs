@@ -80,6 +80,7 @@ public class JsonData
     public string L { get; set; }
     public string M { get; set; }
     public string S { get; set; }
+    public string Correo { get; set; }
 
 }
 
@@ -102,4 +103,5 @@ public class JData
    public string UnoaUno { get; set; }
    public string GPNC { get; set; }
    public string UdeF { get; set; }
+   
 }

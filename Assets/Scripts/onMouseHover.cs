@@ -5,7 +5,6 @@ using UnityEngine;
 public class onMouseHover : MonoBehaviour
 {
     [SerializeField]
-
     bool hoverable = true;
 
     public Manager miMan;
@@ -79,8 +78,16 @@ public class onMouseHover : MonoBehaviour
         {
             changer.miAvatar = gameObject.GetComponent<Avatar>();
             miMan.ActivarBtnChange(true, changer.miAvatar.Correo);
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                miMan.SelectionType(0, changer.miAvatar);
+            }
+            else
+            {
+                miMan.SelectionType(1, changer.miAvatar);
+            }
         }
-      
     }
 
     public void setHover(bool t)

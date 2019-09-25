@@ -11,6 +11,9 @@ public class Manager : MonoBehaviour
     public Animator MiiDisplay;
     public GameObject DialogBox, btnCheckCharacter, mailchanger;
     public Text Name, Param1, Param2, Param3, CorreoOrigi;
+
+    Selector miselect;
+
     [Header("Avatar Behaviour")]
     List<Avatar> Todos;
     List<Transform> objetivos;
@@ -25,7 +28,7 @@ public class Manager : MonoBehaviour
 
     void Start()
     {
-
+        miselect = GetComponent<Selector>();
     }
 
     public void StartManager(List<JData> datos)
@@ -65,6 +68,7 @@ public class Manager : MonoBehaviour
             GameObject go = Instantiate(miiAvatar, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
             Avatar currentAvatar = go.GetComponent<Avatar>();
             currentAvatar.Puntuacion = float.Parse(datos[i].Puntos);
+            currentAvatar.Correo = datos[i].Correo;
             currentAvatar.InicializarAvatar(double.Parse(datos[i].GNC), datos[i].Miembro, datos[i].Miembro, int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].L), int.Parse(datos[i].M), int.Parse(datos[i].S), int.Parse(datos[i].RR), int.Parse(datos[i].RR), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau));
             Reporte.addDatos(double.Parse(datos[i].GNC), int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau));
             Todos.Add(currentAvatar);
@@ -85,7 +89,10 @@ public class Manager : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(1))
+        {
+            miselect.DeselectEverything();
+        }
     }
 
     public void MostrarDialogo(Vector3 avatarPos, string nombre, string param1, string param2, string param3)
@@ -289,7 +296,6 @@ public class Manager : MonoBehaviour
             contx = 2.5f;
             contz += separacionZ;
         }
-
     }
 
     public void ActivarBtnChange(bool activar, string avatrmail)
@@ -309,6 +315,18 @@ public class Manager : MonoBehaviour
         foreach(Avatar av in Todos)
         {
             av.setWander(true);
+        }
+    }
+
+    public void SelectionType(int _t, Avatar _av)
+    {
+       
+        switch (_t)
+        {
+            case 0: miselect.AddtoSelected(_av); break;
+            case 1: miselect.Select(_av); break;
+            case 2: miselect.DeselectEverything(); break;
+            default: miselect.DeselectEverything(); break;
         }
     }
 }

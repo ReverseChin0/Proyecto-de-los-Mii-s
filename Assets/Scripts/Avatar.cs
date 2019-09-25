@@ -8,7 +8,7 @@ public class Avatar : MonoBehaviour
 {
     [Header("Avatar Parameters")]
     public string Nombre, Apellido, Correo;
-    public Color MiColor;
+    public Color MiColor,HeadColor;
     [HideInInspector]
     public int Faltas, Presencias, Tarde, Medica, Sustituto, Formaciones,RefGTotal, RefRTotal, RefGI, RefGE, RefRI, RefRE;
     [HideInInspector]
@@ -26,6 +26,8 @@ public class Avatar : MonoBehaviour
     Rigidbody rig;
     Collider myColi;
     Animator Anim;
+    
+    Material miMatCa,miMatCu;
 
     Vector3 rumbo;
     Vector3 direction;
@@ -38,7 +40,7 @@ public class Avatar : MonoBehaviour
         startSpeed = speed;
         rig = GetComponent<Rigidbody>();
         myColi = GetComponent<Collider>();
-        if(Anim==null)Anim = GetComponent<Animator>();
+        if (Anim==null)Anim = GetComponent<Animator>();
  
         StartCoroutine(NewHeadingRoutine());
     }
@@ -258,8 +260,22 @@ public class Avatar : MonoBehaviour
         {
             MiColor = new Color(0, 1f, 0);
         }
+
+        mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+        miMatCa = mat.material;
+
         mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
         mat.material.SetColor("_Color", MiColor);
+        miMatCu = mat.material;
+    }
+
+    public void ResetMat()
+    {
+        mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+        mat.material = miMatCa;
+
+        mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
+        mat.material = miMatCu;
     }
 
     public void setWander(bool f)
@@ -308,8 +324,6 @@ public class Avatar : MonoBehaviour
         }
     }
 
-    /// Repeatedly calculates a new direction to move towards.
-    /// Use this instead of MonoBehaviour.InvokeRepeating so that the interval can be changed at runtime.
     IEnumerator NewHeadingRoutine()
     {
         while (wander)
