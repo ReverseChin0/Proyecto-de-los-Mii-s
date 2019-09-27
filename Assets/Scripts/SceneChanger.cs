@@ -22,6 +22,11 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(nombre);
     }
     
+    public void beginMainScene()
+    {
+        mianim.SetTrigger("BeginScene");
+    }
+
     public void CambiarA_(string nombre)
     {
         if (nombre == "Stats")

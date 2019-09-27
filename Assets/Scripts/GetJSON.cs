@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GetJSON : MonoBehaviour
 {
     public Manager miman;
+    public SceneChanger sChanger;
     public int tipoexcel = 2;
 
     void Start()
@@ -15,13 +16,8 @@ public class GetJSON : MonoBehaviour
         StartCoroutine(Service(tipoexcel));
     }
 
-    IEnumerator Service(int  tipoexc)
+    IEnumerator Service(int tipoexc)
     {
-        /*List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        formData.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
-        formData.Add(new MultipartFormFileSection("my file data", "myfile.txt"));*/
-
-        //UnityWebRequest www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetContent.php");
 
         UnityWebRequest www;
 
@@ -31,7 +27,6 @@ public class GetJSON : MonoBehaviour
             case 2: www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetNewContent.php"); break;
             default: www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetNewContent.php"); break;
         }
-        
 
         yield return www.SendWebRequest();
 
@@ -41,7 +36,7 @@ public class GetJSON : MonoBehaviour
         }
         else
         {
-            switch(tipoexc)
+            switch (tipoexc)
             {
                 case 1:
                     List<JData> datos = JsonConvert.DeserializeObject<List<JData>>(www.downloadHandler.text);
@@ -54,7 +49,7 @@ public class GetJSON : MonoBehaviour
                 default: break;
             }
             //Debug.Log(www.downloadHandler);
-            
+
         }
     }
 
@@ -62,7 +57,9 @@ public class GetJSON : MonoBehaviour
     {
         tipoexcel = int.Parse(mitets.text);
     }
+
 }
+
 
 public class JsonData
 {

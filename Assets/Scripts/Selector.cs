@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Selector : MonoBehaviour
@@ -13,22 +14,52 @@ public class Selector : MonoBehaviour
     {
         Seleccionados = new List<Avatar>();
     }
+    
+
+    private void Update()
+    {
+        
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.D))
+        {
+            DeselectEverything();
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.A))
+        {
+            SelectEverything();
+        }
+    }
+
     public void AddtoSelected(Avatar _ava)
     {
-        Seleccionados.Add(_ava);
-        Shade(_ava);
+        if (!Seleccionados.Contains(_ava))
+        {
+            Seleccionados.Add(_ava);
+            Shade(_ava);
+        }
+        else
+        {
+            Deselect(_ava);
+        }
     }
 
     public void Select(Avatar _ava)
     {
         
-        if(Seleccionados.Count > 0)
+        if (Seleccionados.Count > 0)
         {
             DeselectEverything();
         }
         Seleccionados.Add(_ava);
         Shade(_ava);
-        
+       
+    }
+
+    public void Deselect(Avatar _av)
+    {
+         int i = Seleccionados.IndexOf(_av);
+         Seleccionados[i].ResetMat();
+         Seleccionados.RemoveAt(i);
     }
 
     public void Shade(Avatar _a)
@@ -48,13 +79,20 @@ public class Selector : MonoBehaviour
     {
         if (Seleccionados.Count > 0)
         {
-            print("Deselect");
             foreach (Avatar _av in Seleccionados)
             {
                 _av.ResetMat();
             }
             Seleccionados.Clear();
+        }  
+    }
+
+    public void SelectEverything()
+    {
+        Seleccionados=FindObjectsOfType<Avatar>().ToList();
+        foreach(Avatar a in Seleccionados)
+        {
+            Shade(a);
         }
-       
     }
 }

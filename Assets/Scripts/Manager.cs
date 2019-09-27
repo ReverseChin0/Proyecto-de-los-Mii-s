@@ -56,6 +56,7 @@ public class Manager : MonoBehaviour
         Reporte.Calcular();
         Reporte.ImprimirRG();
         OcultarDialogo();
+        FindObjectOfType<SceneChanger>().beginMainScene();
     }
 
     public void StartManager2(List<JsonData> datos)
@@ -85,14 +86,12 @@ public class Manager : MonoBehaviour
         Reporte.Calcular();
         Reporte.ImprimirRG();
         OcultarDialogo();
+        FindObjectOfType<SceneChanger>().beginMainScene();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            miselect.DeselectEverything();
-        }
+        
     }
 
     public void MostrarDialogo(Vector3 avatarPos, string nombre, string param1, string param2, string param3)
@@ -320,7 +319,6 @@ public class Manager : MonoBehaviour
 
     public void SelectionType(int _t, Avatar _av)
     {
-       
         switch (_t)
         {
             case 0: miselect.AddtoSelected(_av); break;
