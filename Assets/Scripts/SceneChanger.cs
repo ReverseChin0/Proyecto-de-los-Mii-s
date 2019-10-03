@@ -35,6 +35,9 @@ public class SceneChanger : MonoBehaviour
     {
         if (nombre == "Stats")
         {
+            //Debug.Log(FindObjectOfType<Selector>().givefirstseleccionado());
+            miAvatar = FindObjectOfType<Selector>().givefirstseleccionado();
+           
             StartCoroutine(FadetoSpawn(nombre));
         }
         else

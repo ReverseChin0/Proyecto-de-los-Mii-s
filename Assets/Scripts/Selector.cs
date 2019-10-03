@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Selector : MonoBehaviour
 {
     List<Avatar> Seleccionados;
+    int nSelected = 0;
     Color elColor;
     public Material MaterialBordes;
     Renderer head, body;
-    public GameObject checarbtn;
+    public GameObject checarbtn, cambiarMail;
 
     void Start()
     {
@@ -21,18 +23,20 @@ public class Selector : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
         {
-            RaycastHit hitInfo;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (EventSystem.current.currentSelectedGameObject == null) {
+                RaycastHit hitInfo;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                if(hitInfo.collider.name == "Plane")
+                if (Physics.Raycast(ray, out hitInfo))
                 {
-                    DeselectEverything();
+                    if (hitInfo.collider.name == "Plane")
+                    {
+                        DeselectEverything();
+                    }
                 }
-            }
+            };
+            
         }
-
 
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.A))
         {
@@ -53,6 +57,7 @@ public class Selector : MonoBehaviour
         {
             Deselect(_ava);
         }
+        checknSelected();
     }
 
     public void Select(Avatar _ava)
@@ -64,15 +69,17 @@ public class Selector : MonoBehaviour
         }
         Seleccionados.Add(_ava);
         Shade(_ava);
-       
+        checknSelected();
+
     }
 
     public void Deselect(Avatar _av)
     {
-        checarbtn.SetActive(false);
+        
         int i = Seleccionados.IndexOf(_av);
          Seleccionados[i].ResetMat();
          Seleccionados.RemoveAt(i);
+        checknSelected();
     }
 
     public void Shade(Avatar _a)
@@ -90,6 +97,7 @@ public class Selector : MonoBehaviour
 
     public void DeselectEverything()
     {
+        checarbtn.SetActive(false);
         if (Seleccionados.Count > 0)
         {
             foreach (Avatar _av in Seleccionados)
@@ -97,15 +105,46 @@ public class Selector : MonoBehaviour
                 _av.ResetMat();
             }
             Seleccionados.Clear();
-        }  
+        }
+        checknSelected();
     }
 
     public void SelectEverything()
     {
-        Seleccionados=FindObjectsOfType<Avatar>().ToList();
+        Seleccionados =FindObjectsOfType<Avatar>().ToList();
         foreach(Avatar a in Seleccionados)
         {
             Shade(a);
         }
+        checknSelected();
+    }
+
+    public void checknSelected()
+    {
+        nSelected=Seleccionados.Count;
+        if (nSelected > 1)
+        {
+            checarbtn.SetActive(false);
+            cambiarMail.SetActive(false);
+        }
+        else if(nSelected == 1)
+        {
+            checarbtn.SetActive(true);
+            cambiarMail.SetActive(true);
+        }
+        else
+        {
+            checarbtn.SetActive(false);
+            cambiarMail.SetActive(false);
+        }
+    }
+
+    public Avatar givefirstseleccionado()
+    {
+        if (nSelected == 1)
+        {
+            return Seleccionados[0];
+        }
+        return null;
     }
 }

@@ -304,6 +304,7 @@ public class Manager : MonoBehaviour
         CorreoOrigi.text = avatrmail;
     }*/
     //=======Toggle======
+
     public void ToggleMenuMoreOptions(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
