@@ -9,7 +9,7 @@ public class Manager : MonoBehaviour
 {
     public Camera mainCam;
     public Animator MiiDisplay;
-    public GameObject DialogBox, btnCheckCharacter, mailchanger;
+    public GameObject DialogBox;// btnCheckCharacter, mailchanger;
     public Text Name, Param1, Param2, Param3, CorreoOrigi;
 
     Selector miselect;
@@ -297,12 +297,12 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void ActivarBtnChange(bool activar, string avatrmail)
+    /*public void ActivarBtnChange(bool activar, string avatrmail)
     {
         btnCheckCharacter.SetActive(activar);
         mailchanger.SetActive(activar);
         CorreoOrigi.text = avatrmail;
-    }
+    }*/
     //=======Toggle======
     public void ToggleMenuMoreOptions(GameObject obj)
     {

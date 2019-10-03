@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44300288, g: 0.49219579, b: 0.5719256, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2218,6 +2218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miman: {fileID: 1524000191}
+  sChanger: {fileID: 0}
   tipoexcel: 2
 --- !u!4 &267559821
 Transform:
@@ -12631,8 +12632,6 @@ MonoBehaviour:
   mainCam: {fileID: 534669904}
   MiiDisplay: {fileID: 1544758832}
   DialogBox: {fileID: 51212537}
-  btnCheckCharacter: {fileID: 738617607}
-  mailchanger: {fileID: 1276724177}
   Name: {fileID: 79712730}
   Param1: {fileID: 1773540612}
   Param2: {fileID: 1293428599}
@@ -12692,6 +12691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaterialBordes: {fileID: 2100000, guid: 5fb8df23b3b7a52418b16ccd74d7fb76, type: 2}
+  checarbtn: {fileID: 738617607}
 --- !u!1 &1531485663
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,10 @@ public class SceneChanger : MonoBehaviour
         //DontDestroyOnLoad(fader);
         DontDestroyOnLoad(Canvas);
         DontDestroyOnLoad(this);
+        if(SceneManager.GetActiveScene().name != "Plaza")
+        {
+            mianim.SetTrigger("BeginScene");
+        }
     }
 
     void LoadToScene(string nombre)
@@ -43,7 +47,11 @@ public class SceneChanger : MonoBehaviour
     public IEnumerator FadetoSpawn(string escena)
     {
         if(miAvatar != null)
+        {
             DontDestroyOnLoad(miAvatar);
+            FindObjectOfType<Selector>().DeselectEverything();
+        }
+            
         mianim.SetBool("Fade", true);
         yield return new WaitForSeconds(0.8f);
         LoadToScene(escena);

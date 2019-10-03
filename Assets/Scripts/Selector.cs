@@ -9,6 +9,7 @@ public class Selector : MonoBehaviour
     Color elColor;
     public Material MaterialBordes;
     Renderer head, body;
+    public GameObject checarbtn;
 
     void Start()
     {
@@ -18,20 +19,31 @@ public class Selector : MonoBehaviour
 
     private void Update()
     {
-        
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.D))
+        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
         {
-            DeselectEverything();
+            RaycastHit hitInfo;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                if(hitInfo.collider.name == "Plane")
+                {
+                    DeselectEverything();
+                }
+            }
         }
+
 
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.A))
         {
             SelectEverything();
         }
+
     }
 
     public void AddtoSelected(Avatar _ava)
     {
+        checarbtn.SetActive(false);
         if (!Seleccionados.Contains(_ava))
         {
             Seleccionados.Add(_ava);
@@ -45,7 +57,7 @@ public class Selector : MonoBehaviour
 
     public void Select(Avatar _ava)
     {
-        
+        checarbtn.SetActive(true);
         if (Seleccionados.Count > 0)
         {
             DeselectEverything();
@@ -57,7 +69,8 @@ public class Selector : MonoBehaviour
 
     public void Deselect(Avatar _av)
     {
-         int i = Seleccionados.IndexOf(_av);
+        checarbtn.SetActive(false);
+        int i = Seleccionados.IndexOf(_av);
          Seleccionados[i].ResetMat();
          Seleccionados.RemoveAt(i);
     }
