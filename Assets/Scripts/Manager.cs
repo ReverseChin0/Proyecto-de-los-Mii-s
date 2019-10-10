@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour
     public Animator MiiDisplay;
     public GameObject DialogBox;// btnCheckCharacter, mailchanger;
     public Text Name, Param1, Param2, Param3, CorreoOrigi;
-
+    public MiGrid migri;
     Selector miselect;
 
     [Header("Avatar Behaviour")]
@@ -173,7 +173,52 @@ public class Manager : MonoBehaviour
             }
         }
     }
+     //GRID
+    public void SetObjectivesWithGrid()
+    {
+        List<Avatar> negros = new List<Avatar>();
+        List<Avatar> rojos = new List<Avatar>();
+        List<Avatar> amarillos = new List<Avatar>();
+        List<Avatar> verdes = new List<Avatar>();
 
+        Todos = Todos.OrderBy(a => a.Puntuacion).ToList();
+        foreach (Avatar a in Todos)
+        {
+            if (a.Puntuacion < 30)
+            {
+                negros.Add(a);
+            }
+            else if (a.Puntuacion < 50)
+            {
+                rojos.Add(a);
+            }
+            else if(a.Puntuacion < 70)
+            {
+                amarillos.Add(a);
+            }
+            else
+            {
+                verdes.Add(a);
+            }
+        }
+
+        List<Vector3>posiciones = migri.OrdenarAvataresconGrid(negros, rojos, amarillos, verdes);
+
+        int n = 0;
+        foreach(Vector3 pos in posiciones)
+        {
+            objetivos[n].position = pos;
+            n++;
+        }
+
+        int conter=0;
+        foreach (Avatar ar in Todos)
+        {
+            ar.setWander(false);
+            ar.setObjective(objetivos[conter], false);
+            conter++;
+        }
+    }
 
     public void setwayandobjectives()
     {

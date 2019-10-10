@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300288, g: 0.49219579, b: 0.5719256, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11695,8 +11695,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1524000191}
-        m_MethodName: OrdenarPor
-        m_Mode: 3
+        m_MethodName: SetObjectivesWithGrid
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12610,6 +12610,7 @@ GameObject:
   - component: {fileID: 1524000191}
   - component: {fileID: 1524000193}
   - component: {fileID: 1524000194}
+  - component: {fileID: 1524000195}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -12637,6 +12638,7 @@ MonoBehaviour:
   Param2: {fileID: 1293428599}
   Param3: {fileID: 841625379}
   CorreoOrigi: {fileID: 112032259}
+  migri: {fileID: 1524000195}
   miiAvatar: {fileID: 3881786838238501144, guid: ba800f6734b5a2645a17d565f48175f6,
     type: 3}
   lastselected: 0
@@ -12693,6 +12695,19 @@ MonoBehaviour:
   MaterialBordes: {fileID: 2100000, guid: 5fb8df23b3b7a52418b16ccd74d7fb76, type: 2}
   checarbtn: {fileID: 738617607}
   cambiarMail: {fileID: 1276724177}
+--- !u!114 &1524000195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524000190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d441530949688a4197bdcd875edf3fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1.2
 --- !u!1 &1531485663
 GameObject:
   m_ObjectHideFlags: 0
