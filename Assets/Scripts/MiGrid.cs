@@ -32,72 +32,85 @@ public class MiGrid : MonoBehaviour
         List<Vector3> tr= new List<Vector3>();
         float x = inicialPos.x;
         float z = inicialPos.z;
+
+        float tempsize = 1f;
+
         if (ro != null && ro.Count != 0)
         {
-            foreach(Avatar a in ro)
+
+            tempsize = map(tempsize,0, ro.Count, 0.9f, 5.0f);
+            //Debug.Log("rojo " + tempsize);
+            foreach (Avatar a in ro)
             {
                 tr.Add(new Vector3(x,0.0f,z));
-                x += size;
+                x += tempsize;
                 if (x > inicialPos.x + 8)
                 {
                     x = inicialPos.x;
-                    z += size;
+                    z += tempsize;
                 }
             }
         }
+        tempsize = 1f;
 
         if (ne != null && ne.Count != 0)
         {
+            tempsize = map(tempsize, 0, ne.Count, 0.9f, 5.0f);
+            //Debug.Log("negro " + tempsize);
             foreach (Avatar a in ne)
             {
                 tr.Add(new Vector3(x, 0.0f, z));
-                x += size;
+                x += tempsize;
                 if (x > inicialPos.x + 8)
                 {
                     x = inicialPos.x;
-                    z += size;
+                    z += tempsize;
                 }
             }
         }
-
+        tempsize = 1f;
         x = inicialPos.x + 10;
         z = inicialPos.z;
 
         if (ama != null && ama.Count != 0)
         {
+            tempsize = map(tempsize, 0, ama.Count, 0.9f, 5.0f);
+            //Debug.Log("ama " + tempsize);
             foreach (Avatar a in ama)
             {
                 tr.Add(new Vector3(x, 0.0f, z));
-                x += size;
+                x += tempsize;
                 if (x > inicialPos.x + 18)
                 {
                     x = inicialPos.x + 10;
-                    z += size;
+                    z += tempsize;
                 }
             }
         }
-
+        tempsize = 1f;
         x = inicialPos.x + 20;
         z = inicialPos.z;
 
         if (ver != null && ver.Count != 0)
         {
+            tempsize = map(tempsize, 0, ver.Count, 0.9f, 5.0f);
+            //Debug.Log("ver " + tempsize);
             foreach (Avatar a in ver)
             {
                 tr.Add(new Vector3(x, 0.0f, z));
-                x += size;
+                x += tempsize;
                 if (x > inicialPos.x + 28)
                 {
                     x = inicialPos.x + 20;
-                    z += size;
+                    z += tempsize;
                 }
             }
         }
 
         return tr;
-
     }
 
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -131,6 +144,11 @@ public class MiGrid : MonoBehaviour
                 Gizmos.DrawSphere(point, 0.1f);
             }
         }
+    }*/
+
+    float map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 
 }
