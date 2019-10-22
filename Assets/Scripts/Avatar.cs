@@ -135,8 +135,8 @@ public class Avatar : MonoBehaviour
         distancia = rumbo.magnitude;
         direction = rumbo / distancia;
 
-
-        yield return new WaitForSeconds(time);
+       
+        yield return new WaitForSeconds(time); 
         directed = false;
     }
 
@@ -261,12 +261,12 @@ public class Avatar : MonoBehaviour
             MiColor = new Color(0, 1f, 0);
         }
 
-        mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
-        miMatCa = mat.material;
+        /*mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+        ///miMatCa = mat.material;
 
         mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
-        mat.material.SetColor("_Color", MiColor);
-        miMatCu = mat.material;
+        //mat.material.SetColor("_Color", MiColor);
+        //miMatCu = mat.material;*/
     }
 
     public void ResetMat()
@@ -317,10 +317,13 @@ public class Avatar : MonoBehaviour
                 direction = -transform.position;
                 direction.Normalize();
             }
+
+            Anim.SetBool("SlowMoving", true);
         }
         else
         {
             direction = Vector3.zero;
+            Anim.SetBool("SlowMoving", false);
         }
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GetJSON : MonoBehaviour
 {
     public Manager miman;
-    public SceneChanger sChanger;
+    //public SceneChanger sChanger;
     public int tipoexcel = 2;
 
     void Start()

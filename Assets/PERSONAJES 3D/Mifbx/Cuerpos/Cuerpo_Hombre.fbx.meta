@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 81e7233c28b535c4d95bcf96f91e455f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Body
+    100002: Camisa
+    100004: Camisa 1
+    100006: Camisa_Mangas
+    100008: Corbata1
+    100010: Cuello_Camisa
+    100012: Cuerpo
+    100014: Cuerpo_H
+    100016: //RootNode
+    100018: Cuerpo_M
+    100020: Cuerpos
+    100022: Falda
+    100024: Hombre
+    100026: Mangas
+    100028: Mujer
+    100030: Orejas
+    100032: Orejas1
+    100034: Pantalon
+    100036: Ropa_H
+    100038: Ropa_M
+    100040: Saco
+    100042: Sweter
+    100044: Zapatillas
+    100046: Zapatos1
+    400000: Body
+    400002: Camisa
+    400004: Camisa 1
+    400006: Camisa_Mangas
+    400008: Corbata1
+    400010: Cuello_Camisa
+    400012: Cuerpo
+    400014: Cuerpo_H
+    400016: //RootNode
+    400018: Cuerpo_M
+    400020: Cuerpos
+    400022: Falda
+    400024: Hombre
+    400026: Mangas
+    400028: Mujer
+    400030: Orejas
+    400032: Orejas1
+    400034: Pantalon
+    400036: Ropa_H
+    400038: Ropa_M
+    400040: Saco
+    400042: Sweter
+    400044: Zapatillas
+    400046: Zapatos1
+    2100000: Blanco
+    2100002: Corbata
+    2100004: aiStandardSurface8
+    2100006: Top
+    2100008: Falda1
+    2100010: Zapatos
+    2100012: Piel
+    2300000: Body
+    2300002: Camisa
+    2300004: Camisa 1
+    2300006: Camisa_Mangas
+    2300008: Corbata1
+    2300010: Cuello_Camisa
+    2300012: Cuerpo
+    2300014: Falda
+    2300016: Mangas
+    2300018: Orejas
+    2300020: Orejas1
+    2300022: Pantalon
+    2300024: Saco
+    2300026: Sweter
+    2300028: Zapatillas
+    2300030: Zapatos1
+    3300000: Body
+    3300002: Camisa
+    3300004: Camisa 1
+    3300006: Camisa_Mangas
+    3300008: Corbata1
+    3300010: Cuello_Camisa
+    3300012: Cuerpo
+    3300014: Falda
+    3300016: Mangas
+    3300018: Orejas
+    3300020: Orejas1
+    3300022: Pantalon
+    3300024: Saco
+    3300026: Sweter
+    3300028: Zapatillas
+    3300030: Zapatos1
+    4300000: Camisa_Mangas
+    4300002: Corbata1
+    4300004: Camisa
+    4300006: Saco
+    4300008: Zapatos1
+    4300010: Pantalon
+    4300012: Orejas
+    4300014: Cuerpo
+    4300016: Orejas1
+    4300018: Body
+    4300020: Zapatillas
+    4300022: Falda
+    4300024: Camisa
+    4300026: Cuello_Camisa
+    4300028: Sweter
+    4300030: Mangas
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
