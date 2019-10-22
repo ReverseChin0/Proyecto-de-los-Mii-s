@@ -37,7 +37,6 @@ public class MiGrid : MonoBehaviour
 
         if (ro != null && ro.Count != 0)
         {
-
             tempsize = map(tempsize,0, ro.Count, 0.9f, 5.0f);
             //Debug.Log("rojo " + tempsize);
             foreach (Avatar a in ro)

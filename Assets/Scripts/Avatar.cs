@@ -96,14 +96,14 @@ public class Avatar : MonoBehaviour
                 else if (rumbo.sqrMagnitude < 0.8f)
                 {
                     speed = startSpeed * .15f;
-                    targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
+                    /*targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);*/
                 }
                 else
                 {
                     speed = startSpeed;
-                    targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);
+                    /*targetRotation = Quaternion.LookRotation(objective.position + Vector3.back);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationspeed * Time.deltaTime);*/
                 }
             }
         }
@@ -178,7 +178,15 @@ public class Avatar : MonoBehaviour
             time=Random.Range(0f, 1.5f);
         }
         yield return new WaitForSeconds(time);
-        if(!arrived)Anim.SetBool("Moving", moving);
+        if(!arrived)
+        {
+            Anim.SetBool("Moving", moving);
+            if (moving)
+            {
+                transform.LookAt(new Vector3(direction.x, 0, direction.z) + transform.position);
+            }
+        }
+        Anim.SetBool("SlowMoving", false);
     }
 
     public void setStatic(bool t)
@@ -317,7 +325,7 @@ public class Avatar : MonoBehaviour
                 direction = -transform.position;
                 direction.Normalize();
             }
-
+            transform.LookAt(new Vector3(direction.x,0,direction.z)+transform.position);
             Anim.SetBool("SlowMoving", true);
         }
         else

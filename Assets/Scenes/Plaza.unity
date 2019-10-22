@@ -2137,7 +2137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miman: {fileID: 1524000191}
-  sChanger: {fileID: 0}
   tipoexcel: 2
 --- !u!4 &267559821
 Transform:
@@ -4153,7 +4152,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.9176471, g: 0.9607844, b: 0.9921569, a: 0}
+  m_BackGroundColor: {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
