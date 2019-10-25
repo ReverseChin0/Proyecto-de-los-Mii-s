@@ -31,7 +31,6 @@ public class onMouseHover : MonoBehaviour
 
     public void OnMouseEnter()
     {
-      
         if (hoverable)
         {
             Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);

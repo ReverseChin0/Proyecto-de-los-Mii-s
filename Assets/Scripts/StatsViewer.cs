@@ -6,11 +6,31 @@ using UnityEngine;
 public class StatsViewer : MonoBehaviour
 {
     public Text[] textstats;
-    public Avatar MiAvatar;
+    Avatar MiAvatar;
+
+    Animator an;
+    Transform trans;
+    Collider coli;
+    Vector3 Bounds;
+    bool Air = true, gotAvatar=false;
 
     private void Start()
     {
         StartCoroutine(getAvatar());
+    }
+
+    private void Update()
+    {
+        if (Air && gotAvatar)
+        {
+            Debug.DrawLine(trans.position + Bounds, trans.position + Bounds + Vector3.down,Color.red);
+            if (Physics.Raycast(trans.position + Bounds,Vector3.down,0.5f))
+            {
+                //Debug.Log("Aterrizó");
+                an.SetTrigger("Land");
+                Air = false;
+            }
+        }
     }
 
     IEnumerator getAvatar()
@@ -38,6 +58,12 @@ public class StatsViewer : MonoBehaviour
             textstats[11].text = "Unos a Unos:" + MiAvatar.Uno_a_Uno;
             textstats[12].text = "GPNC:" + MiAvatar.GNC;
             textstats[13].text = "Puntaje:" + MiAvatar.Puntuacion;
+            gotAvatar = true;
+            trans = MiAvatar.GetComponent<Transform>();
+            coli = MiAvatar.GetComponent<Collider>();
+            an = MiAvatar.GetComponent<Animator>();
+                
+            Bounds = new Vector3(0,coli.bounds.min.y-0.05f,0);
         }
     }
 }

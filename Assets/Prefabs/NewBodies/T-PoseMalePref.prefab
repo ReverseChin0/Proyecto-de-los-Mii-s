@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3150400519993225241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4630130776298783315}
+  m_Layer: 0
+  m_Name: BaseCabeza
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4630130776298783315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150400519993225241}
+  m_LocalRotation: {x: 8.479662e-12, y: 1, z: 1.3311e-40, w: 2.2306176e-11}
+  m_LocalPosition: {x: 0, y: -0.038245544, z: 0.0008325222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6120185252959074232}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3526385592700499260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108039413015231820}
+  m_Layer: 0
+  m_Name: BaseNariz
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108039413015231820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526385592700499260}
+  m_LocalRotation: {x: 8.479662e-12, y: 1, z: 1.3311e-40, w: 2.2306176e-11}
+  m_LocalPosition: {x: 0, y: -0.038245544, z: 0.0008325222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6120185252959074232}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6120185252958841728
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +462,9 @@ Transform:
   - {fileID: 3124935555214752927}
   - {fileID: 4187709998452397703}
   - {fileID: 6120185252959074234}
+  - {fileID: 2636387960730761363}
+  - {fileID: 4630130776298783315}
+  - {fileID: 2108039413015231820}
   m_Father: {fileID: 6120185252959074200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1272,6 +1335,36 @@ Transform:
   m_Father: {fileID: 6120185252959074202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6338158734926487236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2636387960730761363}
+  m_Layer: 0
+  m_Name: BaseCabello
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2636387960730761363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338158734926487236}
+  m_LocalRotation: {x: 8.479662e-12, y: 1, z: 1.3311e-40, w: 2.2306176e-11}
+  m_LocalPosition: {x: 0, y: -0.038245544, z: 0.0008325222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6120185252959074232}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2952141822775983895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1397,7 +1490,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: a299a4625290d8b4a9d8260b66687fd3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d50b21075031c1847bcf4b7e8c24c890, type: 2}
+      objectReference: {fileID: 2100000, guid: 0ad32775a2532044aa2bcf2a42bdccc2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a299a4625290d8b4a9d8260b66687fd3, type: 3}
 --- !u!4 &3124935555214752927 stripped

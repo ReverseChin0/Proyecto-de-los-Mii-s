@@ -279,11 +279,11 @@ public class Avatar : MonoBehaviour
 
     public void ResetMat()
     {
-        mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+        /*mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
         mat.material = miMatCa;
 
         mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
-        mat.material = miMatCu;
+        mat.material = miMatCu;*/
     }
 
     public void setWander(bool f)
@@ -304,6 +304,7 @@ public class Avatar : MonoBehaviour
             StartCoroutine(NewHeadingRoutine());
         }
         wander = f;
+        Anim.SetBool("SlowMoving", false);
     }
 	/// Calculates a new direction to move towards
 	void NewHeading()

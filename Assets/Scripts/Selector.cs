@@ -6,16 +6,22 @@ using UnityEngine.EventSystems;
 
 public class Selector : MonoBehaviour
 {
-    List<Avatar> Seleccionados;
-    int nSelected = 0;
+    [HideInInspector]
+    public List<Avatar> Seleccionados;
+    [HideInInspector]
+    public int nSelected = 0;
     Color elColor;
     public Material MaterialBordes;
     Renderer head, body;
-    public GameObject checarbtn, cambiarMail;
+    public GameObject checarbtn;//, cambiarMail;
+
+    public static Selector instancia;  
 
     void Start()
     {
         Seleccionados = new List<Avatar>();
+
+        instancia = this;
     }
     
 
@@ -84,7 +90,7 @@ public class Selector : MonoBehaviour
 
     public void Shade(Avatar _a)
     {
-        head = _a.transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+       /* head = _a.transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
         elColor = head.material.color;
         head.material = MaterialBordes;
         head.material.SetColor("_Color", elColor);
@@ -92,7 +98,7 @@ public class Selector : MonoBehaviour
         body = _a.transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
         elColor = body.material.color;
         body.material = MaterialBordes;
-        body.material.SetColor("_Color", elColor);
+        body.material.SetColor("_Color", elColor);*/
     }
 
     public void DeselectEverything()
@@ -125,17 +131,17 @@ public class Selector : MonoBehaviour
         if (nSelected > 1)
         {
             checarbtn.SetActive(false);
-            cambiarMail.SetActive(false);
+            //cambiarMail.SetActive(false);
         }
         else if(nSelected == 1)
         {
             checarbtn.SetActive(true);
-            cambiarMail.SetActive(true);
+            //cambiarMail.SetActive(true);
         }
         else
         {
             checarbtn.SetActive(false);
-            cambiarMail.SetActive(false);
+            //cambiarMail.SetActive(false);
         }
     }
 

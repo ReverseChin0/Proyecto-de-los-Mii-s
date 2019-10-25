@@ -88,6 +88,6 @@ public class SceneChanger : MonoBehaviour
         pos.position = new Vector3(-2.5f, 5, -6.5f);
         pos.LookAt(pos.position + Vector3.back);
         miAvatar.setWander(false);
+        miAvatar.GetComponent<Animator>().SetTrigger("Fall");
     }
-
 }
