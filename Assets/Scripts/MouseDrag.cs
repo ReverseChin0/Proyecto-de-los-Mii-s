@@ -17,11 +17,11 @@ public class MouseDrag : MonoBehaviour
     bool canMove = true;
     int indexPose = 0;
 
-    float ValorT = 0, factorMov, tiempoMov;
+    float ValorT = 0, factorMov;
+    public float tiempoMov=0.5f;
     Vector3 newPos;
     void Start()
     {
-        tiempoMov = 0.5f;
         HighHeight = transform.position.y;
         MediumHeigh = 12.0f;
         LowHeight = 6.0f;
@@ -46,14 +46,7 @@ public class MouseDrag : MonoBehaviour
             {
                 canMove = false;
                 indexPose--;
-                if (indexPose < 0) indexPose = 0;
-
-                switch (indexPose)
-                {
-                    case 0: newPos = new Vector3(transform.position.x, HighHeight, transform.position.z); current = HighRot; break;
-                    case 1: newPos = new Vector3(transform.position.x, MediumHeigh, transform.position.z); current = MedRot; break;
-                }
-                ValorT = 0;
+                ChangePos();
                 return;
             }
 
@@ -61,14 +54,7 @@ public class MouseDrag : MonoBehaviour
             {
                 canMove = false;
                 indexPose++;
-                if (indexPose > 2) indexPose = 2;
-
-                switch (indexPose)
-                {
-                    case 1: newPos = new Vector3(transform.position.x, MediumHeigh, transform.position.z); current = MedRot; break;
-                    case 2: newPos = new Vector3(transform.position.x, LowHeight, transform.position.z); current = LowRot; break;
-                }
-                ValorT = 0;
+                ChangePos();
                 return;
             }
 
@@ -94,6 +80,21 @@ public class MouseDrag : MonoBehaviour
             ReacomodarCamara();
         }
         
+    }
+
+    public void ChangePos()
+    {
+        if (indexPose < 0) indexPose = 0;
+        if (indexPose > 2) indexPose = 2;
+
+        switch (indexPose)
+        {
+            case 0: newPos = new Vector3(transform.position.x, HighHeight, transform.position.z); current = HighRot; break;
+            case 1: newPos = new Vector3(transform.position.x, MediumHeigh, transform.position.z); current = MedRot; break;
+            case 2: newPos = new Vector3(transform.position.x, LowHeight, transform.position.z); current = LowRot; break;
+
+        }
+        ValorT = 0;
     }
 
     public void ReacomodarCamara()
