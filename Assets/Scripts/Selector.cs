@@ -23,7 +23,6 @@ public class Selector : MonoBehaviour
 
         instancia = this;
     }
-    
 
     private void Update()
     {
@@ -117,7 +116,7 @@ public class Selector : MonoBehaviour
 
     public void SelectEverything()
     {
-        Seleccionados =FindObjectsOfType<Avatar>().ToList();
+        Seleccionados = FindObjectsOfType<Avatar>().ToList();
         foreach(Avatar a in Seleccionados)
         {
             Shade(a);
