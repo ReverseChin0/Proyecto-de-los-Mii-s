@@ -31,8 +31,11 @@ public class MouseDrag : MonoBehaviour
         LowRot = Quaternion.Euler(25.0f, 0, 0);
 
         factorMov = 1 / tiempoMov;
-    }
 
+        canMove = false;
+        indexPose+=2;
+        ChangePos();
+    }
 
     void Update()
     {

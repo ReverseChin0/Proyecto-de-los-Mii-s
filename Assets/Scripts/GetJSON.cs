@@ -78,7 +78,7 @@ public class JsonData
     public string M { get; set; }
     public string S { get; set; }
     public string Correo { get; set; }
-
+    public string Mujer { get; set; }
 }
 
 public class JData

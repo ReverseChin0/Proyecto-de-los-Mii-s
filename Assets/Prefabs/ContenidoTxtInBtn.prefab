@@ -148,7 +148,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 2
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 0
+    m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -466,8 +466,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8028680707859120480}
+  - component: {fileID: 286205120571927761}
   m_Layer: 5
-  m_Name: TextoInputBtn
+  m_Name: ContenidoTxtInBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,6 +496,20 @@ RectTransform:
   m_AnchoredPosition: {x: 134.85, y: 0}
   m_SizeDelta: {x: 269.7, y: 38.9}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &286205120571927761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028680707859120481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5327c9aec928c7e4d9bf6ad9e9ca7506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Nombre: {fileID: 8028680707708664974}
+  newmail: {fileID: 8028680707577515783}
 --- !u!1 &8028680707877036271
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +625,17 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8028680707877036240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 286205120571927761}
+        m_MethodName: updateMail
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null

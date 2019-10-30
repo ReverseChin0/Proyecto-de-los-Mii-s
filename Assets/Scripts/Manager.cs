@@ -17,7 +17,7 @@ public class Manager : MonoBehaviour
     [Header("Avatar Behaviour")]
     List<Avatar> Todos;
     List<Transform> objetivos;
-    public GameObject miiAvatar;
+    public GameObject miiAvatar1,miiAvatar2;
     [Tooltip("Cuantos mii´s, habrá en la simulacion")]
     public int lastselected = 0;//0=idlewalk,1=edad,2=peso,3=genero,,4=nombre,5=color;
     int NumeroAvatares, nMujeres = 0;
@@ -38,7 +38,12 @@ public class Manager : MonoBehaviour
         NumeroAvatares = datos.Count;
         for (int i = 0; i < datos.Count; i++)
         {
-            GameObject go = Instantiate(miiAvatar, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
+            GameObject prefab = miiAvatar1;
+            if (Random.Range(0, 2) == 0)
+            {
+                prefab = miiAvatar2;
+            }
+            GameObject go = Instantiate(prefab, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
             Avatar currentAvatar = go.GetComponent<Avatar>();
             currentAvatar.InicializarAvatar(double.Parse(datos[i].GPNC), datos[i].Nombre, datos[i].Apellido, int.Parse(datos[i].Faltas), int.Parse(datos[i].Presente), int.Parse(datos[i].Tarde), int.Parse(datos[i].FaltasMedicas), int.Parse(datos[i].FaltasSustituidas), int.Parse(datos[i].RefRI), int.Parse(datos[i].RefRe), int.Parse(datos[i].UdeF), float.Parse(datos[i].Invitados), int.Parse(datos[i].RefDI), int.Parse(datos[i].RefDE), float.Parse(datos[i].UnoaUno));
             Reporte.addDatos(double.Parse(datos[i].GPNC), int.Parse(datos[i].Faltas), int.Parse(datos[i].Presente), int.Parse(datos[i].UdeF), float.Parse(datos[i].Invitados), int.Parse(datos[i].RefDI), int.Parse(datos[i].RefDE), float.Parse(datos[i].UnoaUno));
@@ -66,7 +71,12 @@ public class Manager : MonoBehaviour
         NumeroAvatares = datos.Count;
         for (int i = 0; i < datos.Count; i++)
         {
-            GameObject go = Instantiate(miiAvatar, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
+            GameObject prefab = miiAvatar1;
+            if (datos[i].Mujer == "1")
+            {
+                prefab = miiAvatar2;
+            }
+            GameObject go = Instantiate(prefab, new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
             Avatar currentAvatar = go.GetComponent<Avatar>();
             currentAvatar.Puntuacion = float.Parse(datos[i].Puntos);
             currentAvatar.Correo = datos[i].Correo;

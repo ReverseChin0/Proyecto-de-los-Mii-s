@@ -27,7 +27,7 @@ public class Avatar : MonoBehaviour
     Collider myColi;
     Animator Anim;
     
-    Material miMatCa,miMatCu;
+    Material miMatCa;
 
     Vector3 rumbo;
     Vector3 direction;
@@ -269,11 +269,11 @@ public class Avatar : MonoBehaviour
             MiColor = new Color(0, 1f, 0);
         }
 
-        /*mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
-        ///miMatCa = mat.material;
+        mat = transform.GetChild(1).GetComponent<Renderer>();
+        mat.material.SetColor("_Color", MiColor);
+        miMatCa = mat.material;
 
-        mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
-        //mat.material.SetColor("_Color", MiColor);
+        //
         //miMatCu = mat.material;*/
     }
 

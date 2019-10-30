@@ -744,7 +744,9 @@ MonoBehaviour:
   Param3: {fileID: 841625379}
   CorreoOrigi: {fileID: 0}
   migri: {fileID: 1524000195}
-  miiAvatar: {fileID: 6120185252958841818, guid: 10019ea4128e9734691b77bc44a863ca,
+  miiAvatar1: {fileID: 6120185252958841818, guid: 10019ea4128e9734691b77bc44a863ca,
+    type: 3}
+  miiAvatar2: {fileID: 2972383955847873628, guid: dc6f676c4b62b174eb7c7c43b042431d,
     type: 3}
   lastselected: 0
   Reporte: {fileID: 1524000193}
