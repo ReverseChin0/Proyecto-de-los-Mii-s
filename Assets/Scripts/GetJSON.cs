@@ -83,7 +83,6 @@ public class JsonData
 
 public class JData
 {
-    
    public string IDAvatar { get; set; }
    public string Nombre { get; set; }
    public string Apellido { get; set; }
