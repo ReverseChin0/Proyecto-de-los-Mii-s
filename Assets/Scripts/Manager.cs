@@ -31,7 +31,7 @@ public class Manager : MonoBehaviour
         miselect = GetComponent<Selector>();
     }
 
-    public void StartManager(List<JData> datos)
+    /*public void StartManager(List<JData> datos)
     {
         Todos = new List<Avatar>();
         objetivos = new List<Transform>();
@@ -62,7 +62,7 @@ public class Manager : MonoBehaviour
         Reporte.ImprimirRG();
         OcultarDialogo();
         FindObjectOfType<SceneChanger>().beginMainScene();
-    }
+    }*/
 
     public void StartManager2(List<JsonData> datos)
     {
@@ -80,7 +80,7 @@ public class Manager : MonoBehaviour
             Avatar currentAvatar = go.GetComponent<Avatar>();
             currentAvatar.Puntuacion = float.Parse(datos[i].Puntos);
             currentAvatar.Correo = datos[i].Correo;
-            currentAvatar.InicializarAvatar(double.Parse(datos[i].GNC), datos[i].Miembro, datos[i].Miembro, int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].L), int.Parse(datos[i].M), int.Parse(datos[i].S), int.Parse(datos[i].RR), int.Parse(datos[i].RR), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau));
+            currentAvatar.InicializarAvatar(double.Parse(datos[i].GNC), datos[i].Miembro, datos[i].Miembro, int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].L), int.Parse(datos[i].M), int.Parse(datos[i].S), int.Parse(datos[i].RR), int.Parse(datos[i].RR), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau), datos[i].Mujer);
             Reporte.addDatos(double.Parse(datos[i].GNC), int.Parse(datos[i].A), int.Parse(datos[i].P), int.Parse(datos[i].UdeF), float.Parse(datos[i].invitados), int.Parse(datos[i].RG), int.Parse(datos[i].RG), float.Parse(datos[i].uau));
             Todos.Add(currentAvatar);
 

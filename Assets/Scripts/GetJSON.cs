@@ -9,24 +9,21 @@ public class GetJSON : MonoBehaviour
 {
     public Manager miman;
     //public SceneChanger sChanger;
-    public int tipoexcel = 2;
+    //public int tipoexcel = 2;
 
     void Start()
     {
-        StartCoroutine(Service(tipoexcel));
+        StartCoroutine(Service());
     }
 
-    IEnumerator Service(int tipoexc)
+    IEnumerator Service()
     {
 
         UnityWebRequest www;
-
-        switch (tipoexc)
-        {
-            case 1: www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetContent.php"); break;
-            case 2: www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetNewContent.php"); break;
-            default: www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetNewContent.php"); break;
-        }
+    
+            
+          www = UnityWebRequest.Get("http://desarrolloweb.socresanet.com.mx/mii_plaza/GetNewContent.php");
+     
 
         yield return www.SendWebRequest();
 
@@ -36,27 +33,17 @@ public class GetJSON : MonoBehaviour
         }
         else
         {
-            switch (tipoexc)
-            {
-                case 1:
-                    List<JData> datos = JsonConvert.DeserializeObject<List<JData>>(www.downloadHandler.text);
-                    miman.StartManager(datos);
-                    break;
-                case 2:
-                    List<JsonData> datos2 = JsonConvert.DeserializeObject<List<JsonData>>(www.downloadHandler.text);
-                    miman.StartManager2(datos2);
-                    break;
-                default: break;
-            }
-            //Debug.Log(www.downloadHandler);
+            Debug.Log(www.downloadHandler.text);
+            List<JsonData> datos2 = JsonConvert.DeserializeObject<List<JsonData>>(www.downloadHandler.text);
+            miman.StartManager2(datos2);
 
         }
     }
 
-    public void setearExcel(Text mitets)
+   /* public void setearExcel(Text mitets)
     {
         tipoexcel = int.Parse(mitets.text);
-    }
+    }*/
 
 }
 

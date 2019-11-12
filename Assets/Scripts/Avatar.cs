@@ -22,7 +22,7 @@ public class Avatar : MonoBehaviour
     bool arrived = true, directed = false, moving = false, primerRumbo = false, wander = true;
     float startSpeed, directionChangeInterval = 3.0f;
 
-    Renderer mat;
+    public Renderer mat;
     Rigidbody rig;
     Collider myColi;
     Animator Anim;
@@ -45,7 +45,7 @@ public class Avatar : MonoBehaviour
         StartCoroutine(NewHeadingRoutine());
     }
 
-    public void InicializarAvatar(double gnc, string nombre, string apelli,int faltas,int prese,int tarde, int medi, int susti, int refri, int refre, int forma, float invi, int refgi, int refge, float uno)
+    public void InicializarAvatar(double gnc, string nombre, string apelli,int faltas,int prese,int tarde, int medi, int susti, int refri, int refre, int forma, float invi, int refgi, int refge, float uno, string _mujer)
     {
         GNC = gnc;
         Nombre = nombre;
@@ -67,7 +67,15 @@ public class Avatar : MonoBehaviour
         RefGTotal = refgi + refge;
         Uno_a_Uno = uno;
 
-        CalculateAllScores();
+        if(_mujer == "1")
+        {
+            CalculateAllScores(1);
+        }
+        else
+        {
+            CalculateAllScores(0);
+        }
+        
     }
     void Update()
     {
@@ -194,7 +202,8 @@ public class Avatar : MonoBehaviour
         myColi.isTrigger = t;
         rig.isKinematic = t;
     }
-    public void CalculateAllScores()
+
+    public void CalculateAllScores(int m)
     {
         /*Puntuacion = 0;
 
@@ -269,21 +278,24 @@ public class Avatar : MonoBehaviour
             MiColor = new Color(0, 1f, 0);
         }
 
-        mat = transform.GetChild(1).GetComponent<Renderer>();
-        mat.material.SetColor("_Color", MiColor);
-        miMatCa = mat.material;
+        if (m == 1)
+        {
+            mat.material.SetColor("_ColorSweater", MiColor);
+        }
+        else
+        {
+            mat.material.SetColor("_ColorSuit", MiColor);
+        }
+        //mat = transform.GetChild(1).GetComponent<Renderer>();
+        //mat.material.SetColor("_Color", MiColor);
+        //miMatCa = mat.material;
 
-        //
-        //miMatCu = mat.material;*/
+
     }
 
     public void ResetMat()
     {
-        /*mat = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
-        mat.material = miMatCa;
 
-        mat = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
-        mat.material = miMatCu;*/
     }
 
     public void setWander(bool f)

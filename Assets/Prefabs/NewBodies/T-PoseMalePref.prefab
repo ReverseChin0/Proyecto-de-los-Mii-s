@@ -117,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608916067016481886}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6120185252959074298}
@@ -1459,6 +1459,7 @@ MonoBehaviour:
   maxHeadingChange: 30
   GNC: 0
   mujer: 1
+  mat: {fileID: 3122301546079036654}
 --- !u!54 &7086678110549748129
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1803,10 +1804,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5331673626143981597}
     m_Modifications:
-    - target: {fileID: 100002, guid: a299a4625290d8b4a9d8260b66687fd3, type: 3}
-      propertyPath: m_Name
-      value: Nariz_Bolita
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a299a4625290d8b4a9d8260b66687fd3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1851,6 +1848,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: a299a4625290d8b4a9d8260b66687fd3, type: 3}
+      propertyPath: m_Name
+      value: Nariz_Bolita
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a299a4625290d8b4a9d8260b66687fd3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1870,10 +1871,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5331673626143981597}
     m_Modifications:
-    - target: {fileID: 100002, guid: ff4036c39cd5e6c49a899314097a6403, type: 3}
-      propertyPath: m_Name
-      value: Cabello_CortoChino
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ff4036c39cd5e6c49a899314097a6403, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1918,6 +1915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ff4036c39cd5e6c49a899314097a6403, type: 3}
+      propertyPath: m_Name
+      value: Cabello_CortoChino
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ff4036c39cd5e6c49a899314097a6403, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1937,10 +1938,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5331673626143981597}
     m_Modifications:
-    - target: {fileID: 100000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
-      propertyPath: m_Name
-      value: Cabeza_Angular
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1984,6 +1981,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
+      propertyPath: m_Name
+      value: Cabeza_Angular
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
       propertyPath: m_Materials.Array.data[0]

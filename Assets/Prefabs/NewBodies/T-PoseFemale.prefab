@@ -90,6 +90,7 @@ MonoBehaviour:
   maxHeadingChange: 30
   GNC: 0
   mujer: 1
+  mat: {fileID: 4383498202490373871}
 --- !u!54 &2103290672072334258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -656,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 114763810097e4544ba1ee468d3bacd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0677
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 114763810097e4544ba1ee468d3bacd3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -713,6 +714,12 @@ Transform:
 --- !u!4 &4383498202504468463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400032, guid: 114763810097e4544ba1ee468d3bacd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4383498202504072527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4383498202490373871 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 114763810097e4544ba1ee468d3bacd3,
     type: 3}
   m_PrefabInstance: {fileID: 4383498202504072527}
   m_PrefabAsset: {fileID: 0}
@@ -796,14 +803,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4383498202504468463}
     m_Modifications:
-    - target: {fileID: 100000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
-      propertyPath: m_Name
-      value: Cabeza_Angular
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -847,6 +846,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
+      propertyPath: m_Name
+      value: Cabeza_Angular
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 373643969a8eaba4daaebd3f9c7aa2eb, type: 3}
       propertyPath: m_Materials.Array.data[0]

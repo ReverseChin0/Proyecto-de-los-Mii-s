@@ -31,9 +31,9 @@ Material:
     - _Gloss: 0.2
     - _Metallic: 0
     m_Colors:
-    - _ColorNeck: {r: 1, g: 1, b: 0.5, a: 1}
-    - _ColorShirt: {r: 0.5, g: 1, b: 1, a: 1}
-    - _ColorShoes: {r: 0.5, g: 1, b: 0.5, a: 1}
-    - _ColorSkin: {r: 0.68235296, g: 0.5529412, b: 0.39607847, a: 1}
-    - _ColorSuit: {r: 0.5, g: 0.5, b: 1, a: 1}
-    - _ColorTie: {r: 1, g: 0.5, b: 1, a: 1}
+    - _ColorNeck: {r: 0, g: 0.16037738, b: 0.05387907, a: 1}
+    - _ColorShirt: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorShoes: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _ColorSkin: {r: 0.67058825, g: 0.54509807, b: 0.38823533, a: 1}
+    - _ColorSuit: {r: 0.08690815, g: 0.1981132, b: 0.08690815, a: 1}
+    - _ColorTie: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}

@@ -31,7 +31,7 @@ Material:
     - _Gloss: 0.2
     - _Metallic: 0
     m_Colors:
-    - _ColorShirt: {r: 0.5, g: 1, b: 1, a: 1}
+    - _ColorShirt: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSkin: {r: 0.6784314, g: 0.5529412, b: 0.39607847, a: 1}
-    - _ColorSkirt: {r: 0.5, g: 0.5, b: 1, a: 1}
-    - _ColorSweater: {r: 0.5, g: 1, b: 0.5, a: 1}
+    - _ColorSkirt: {r: 0.07450981, g: 0.07450981, b: 0.07450981, a: 1}
+    - _ColorSweater: {r: 0.18222678, g: 0.4245283, b: 0.18222678, a: 1}
