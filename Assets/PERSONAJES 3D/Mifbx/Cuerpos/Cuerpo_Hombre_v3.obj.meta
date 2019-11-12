@@ -1,63 +1,16 @@
 fileFormatVersion: 2
-guid: d5569ef16ba9f124d8034bca2191f689
+guid: 526ae7d19998bec43af768763cf77886
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Body
-    100002: Camisa
-    100004: Cuello_Camisa
-    100006: Cuerpo_M
-    100008: //RootNode
-    100010: Cuerpos
-    100012: Falda
-    100014: Mangas
-    100016: Mujer
-    100018: Orejas1
-    100020: Ropa_M
-    100022: Sweter
-    100024: Zapatillas
-    400000: Body
-    400002: Camisa
-    400004: Cuello_Camisa
-    400006: Cuerpo_M
-    400008: //RootNode
-    400010: Cuerpos
-    400012: Falda
-    400014: Mangas
-    400016: Mujer
-    400018: Orejas1
-    400020: Ropa_M
-    400022: Sweter
-    400024: Zapatillas
-    2100000: Piel
-    2100002: Zapatos
-    2100004: Falda1
-    2100006: Blanco
-    2100008: Top
-    2300000: Body
-    2300002: Camisa
-    2300004: Cuello_Camisa
-    2300006: Falda
-    2300008: Mangas
-    2300010: Orejas1
-    2300012: Sweter
-    2300014: Zapatillas
-    3300000: Body
-    3300002: Camisa
-    3300004: Cuello_Camisa
-    3300006: Falda
-    3300008: Mangas
-    3300010: Orejas1
-    3300012: Sweter
-    3300014: Zapatillas
-    4300000: Orejas1
-    4300002: Body
-    4300004: Zapatillas
-    4300006: Falda
-    4300008: Camisa
-    4300010: Cuello_Camisa
-    4300012: Sweter
-    4300014: Mangas
+    100000: //RootNode
+    100002: default
+    400000: //RootNode
+    400002: default
+    2100000: defaultMat
+    2300000: default
+    3300000: default
+    4300000: default
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:

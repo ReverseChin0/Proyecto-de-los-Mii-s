@@ -1332,7 +1332,7 @@ PrefabInstance:
     - target: {fileID: 5374453865989532780, guid: 1f467ad7f2fce144296824567f398ae7,
         type: 3}
       propertyPath: m_Text
-      value: Mostrar / Ocoultar
+      value: Mostrar / Ocultar
       objectReference: {fileID: 0}
     - target: {fileID: 8446981487116868918, guid: 1f467ad7f2fce144296824567f398ae7,
         type: 3}
@@ -1677,7 +1677,7 @@ PrefabInstance:
     - target: {fileID: 5760317890987559535, guid: 1f467ad7f2fce144296824567f398ae7,
         type: 3}
       propertyPath: m_Text
-      value: RomperFormacion
+      value: "Romper Formaci\xF3n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f467ad7f2fce144296824567f398ae7, type: 3}
