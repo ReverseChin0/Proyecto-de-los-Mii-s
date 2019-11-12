@@ -142,8 +142,8 @@ public class Avatar : MonoBehaviour
         rumbo.y = 0;
         distancia = rumbo.magnitude;
         direction = rumbo / distancia;
+        //Anim.SetBool("SlowMoving", true);
 
-       
         yield return new WaitForSeconds(time); 
         directed = false;
     }
@@ -167,6 +167,7 @@ public class Avatar : MonoBehaviour
             rumbo.y = 0;
             distancia = rumbo.magnitude;
             direction = rumbo / distancia;
+            //Anim.SetBool("SlowMoving", true);
         }
     }
 
@@ -186,7 +187,7 @@ public class Avatar : MonoBehaviour
             time=Random.Range(0f, 1.5f);
         }
         yield return new WaitForSeconds(time);
-        if(!arrived)
+        if (!arrived)
         {
             Anim.SetBool("Moving", moving);
             if (moving)
@@ -194,6 +195,7 @@ public class Avatar : MonoBehaviour
                 transform.LookAt(new Vector3(direction.x, 0, direction.z) + transform.position);
             }
         }
+        
         Anim.SetBool("SlowMoving", false);
     }
 
@@ -286,11 +288,7 @@ public class Avatar : MonoBehaviour
         {
             mat.material.SetColor("_ColorSuit", MiColor);
         }
-        //mat = transform.GetChild(1).GetComponent<Renderer>();
-        //mat.material.SetColor("_Color", MiColor);
-        //miMatCa = mat.material;
-
-
+        
     }
 
     public void ResetMat()
@@ -316,7 +314,7 @@ public class Avatar : MonoBehaviour
             StartCoroutine(NewHeadingRoutine());
         }
         wander = f;
-        Anim.SetBool("SlowMoving", false);
+        //Anim.SetBool("SlowMoving", false);
     }
 	/// Calculates a new direction to move towards
 	void NewHeading()
