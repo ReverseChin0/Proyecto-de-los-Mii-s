@@ -15,7 +15,7 @@ public class onMouseHover : MonoBehaviour
     void Start()
     {
         mychangers = FindObjectsOfType<SceneChanger>();
-        //print(mychangers.Length);
+
         if (mychangers.Length > 1)
         {
             changer = mychangers[mychangers.Length-1];
@@ -36,7 +36,7 @@ public class onMouseHover : MonoBehaviour
             Vector3 newpos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             switch (miMan.lastselected)
             {
-                
+                case 2: miMan.MostrarDialogo(newpos, miavatar.Nombre, "Faltas: " + miavatar.Faltas.ToString(), "Puntuacion: " + miavatar.Puntuacion.ToString(), "GNC: " + miavatar.GNC.ToString()); break;
                 case 5: miMan.MostrarDialogo(newpos, miavatar.Nombre, "GNC: " + miavatar.GNC.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
                 case 6: miMan.MostrarDialogo(newpos, miavatar.Nombre, "Invitados: " + miavatar.Invitados.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;
                 case 7: miMan.MostrarDialogo(newpos, miavatar.Nombre, "UdeF: " + miavatar.Formaciones.ToString(), "Faltas: " + miavatar.Faltas.ToString(), "Referencias: " + miavatar.RefGTotal.ToString()); break;

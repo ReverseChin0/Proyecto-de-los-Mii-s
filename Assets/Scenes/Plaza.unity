@@ -327,7 +327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miman: {fileID: 1524000191}
-  tipoexcel: 2
 --- !u!4 &267559821
 Transform:
   m_ObjectHideFlags: 0
@@ -1564,6 +1563,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 506461320134143046, guid: 1f467ad7f2fce144296824567f398ae7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3706688509697222030, guid: 1f467ad7f2fce144296824567f398ae7,
         type: 3}
       propertyPath: m_Text
@@ -1604,6 +1608,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7725742817781636718, guid: 1f467ad7f2fce144296824567f398ae7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4232669112250640161, guid: 1f467ad7f2fce144296824567f398ae7,
         type: 3}
       propertyPath: m_Text
@@ -1638,6 +1647,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823311321407595250, guid: 1f467ad7f2fce144296824567f398ae7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8566927186999641410, guid: 1f467ad7f2fce144296824567f398ae7,
         type: 3}
