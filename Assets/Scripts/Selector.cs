@@ -85,19 +85,21 @@ public class Selector : MonoBehaviour
          Seleccionados[i].ResetMat();
          Seleccionados.RemoveAt(i);
         checknSelected();
+        _av.SelectBodyOutline(false);
     }
 
     public void Shade(Avatar _a)
     {
-       /* head = _a.transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
-        elColor = head.material.color;
-        head.material = MaterialBordes;
-        head.material.SetColor("_Color", elColor);
+        /* head = _a.transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+         elColor = head.material.color;
+         head.material = MaterialBordes;
+         head.material.SetColor("_Color", elColor);
 
-        body = _a.transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
-        elColor = body.material.color;
-        body.material = MaterialBordes;
-        body.material.SetColor("_Color", elColor);*/
+         body = _a.transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
+         elColor = body.material.color;
+         body.material = MaterialBordes;
+         body.material.SetColor("_Color", elColor);*/
+        _a.SelectBodyOutline(true);
     }
 
     public void DeselectEverything()

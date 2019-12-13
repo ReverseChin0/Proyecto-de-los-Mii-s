@@ -34,6 +34,8 @@ public class Avatar : MonoBehaviour
     Quaternion targetRotation;
     float distancia=0, speed, rotationspeed=5f;
 
+    public List<Outline> outlines = new List<Outline>();
+
     void Start()
     {
         speed = 5;
@@ -43,6 +45,7 @@ public class Avatar : MonoBehaviour
         if (Anim==null)Anim = GetComponent<Animator>();
  
         StartCoroutine(NewHeadingRoutine());
+        SelectBodyOutline(false);
     }
 
     public void InicializarAvatar(double gnc, string nombre, string apelli,int faltas,int prese,int tarde, int medi, int susti, int refri, int refre, int forma, float invi, int refgi, int refge, float uno, string _mujer)
@@ -293,7 +296,15 @@ public class Avatar : MonoBehaviour
 
     public void ResetMat()
     {
+        SelectBodyOutline(false);
+    }
 
+    public void SelectBodyOutline(bool _select)
+    {
+        foreach(Outline _o in outlines)
+        {
+            _o.enabled = _select;
+        }
     }
 
     public void setWander(bool f)

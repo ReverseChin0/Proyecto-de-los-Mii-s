@@ -89,5 +89,6 @@ public class SceneChanger : MonoBehaviour
         pos.LookAt(pos.position + Vector3.back);
         miAvatar.setWander(false);
         miAvatar.GetComponent<Animator>().SetTrigger("Fall");
+        miAvatar.GetComponent<Animator>().SetBool("SlowMoving",false);
     }
 }
